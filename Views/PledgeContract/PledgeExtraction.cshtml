@@ -1,0 +1,343 @@
+﻿@model Lombard.Domain.ViewModels.PledgeContractVM
+
+@{
+    ViewData["Title"] = "PledgeExtraction";
+}
+
+
+<form asp-action="PledgeExtraction">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ParentId" value="@ViewData["ParentId"]"/>
+    <input type="hidden" asp-for="CorporativeContractId" value="@ViewData["CorporativeContractId"]"/>
+
+    <div class="input-row-inside-form-part d-g">
+        <div class="input-holder-with-label d-f">
+            <label asp-for="ContractNumber" class="f-s-14 f-w-500">Çıxarış müqaviləsi nömrəsi</label>
+            <input asp-for="ContractNumber" type="text" id="ContractNumber" required readonly value="@ViewData["ContractNumber"]">
+        </div>
+        <div class="input-holder-with-label d-f">
+            <label asp-for="Date" class="f-s-14 f-w-500">Tarix</label>
+            <input asp-for="Date" type="date" id="Date" required value=null >
+        </div>
+    </div>
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="form-part-inside-form-holder d-f">
+            <!-- Table holder starts here -->
+            <div class="main-table-holder-inside-page-cont d-f">
+                <div class="label-holder-inside-table-holder d-f">
+                    <p class="f-s-24 f-w-bold" id="PageIndicator" 
+                    data-page="Girovlar" data-indicator="hal-hazırda girovlardan çıxarış edirsiniz"
+                    >Girovlardan çıxarış et</p>
+                </div>
+                <div class="search-bar-holder-inside-table-holder">
+                    <div class="search-bar-div-inside-table-holder">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20.1666 8.7085C20.1666 12.5055 17.0885 15.5835 13.2916 15.5835C11.7043 15.5835 10.2426 15.0455 9.07888 14.142C9.03505 14.2348 8.97479 14.3217 8.8981 14.3983L3.3981 19.8983C3.04012 20.2563 2.45972 20.2563 2.10174 19.8983C1.74376 19.5404 1.74376 18.96 2.10174 18.602L7.60174 13.102C7.67843 13.0253 7.76533 12.965 7.85806 12.9212C6.95453 11.7575 6.41659 10.2958 6.41659 8.7085C6.41659 4.91154 9.49463 1.8335 13.2916 1.8335C17.0885 1.8335 20.1666 4.91154 20.1666 8.7085ZM18.3333 8.7085C18.3333 5.92406 16.076 3.66683 13.2916 3.66683C10.5071 3.66683 8.24992 5.92406 8.24992 8.7085C8.24992 11.4929 10.5071 13.7502 13.2916 13.7502C16.076 13.7502 18.3333 11.4929 18.3333 8.7085Z" fill="#C4C8D4"/>
+                        </svg>                            
+                        <input class="f-s-14" type="text" name="search_inside_table" id="search_inside_table" placeholder="Axtar">
+                    </div>
+                </div>
+                <div class="table-inside-table-holder corporative-gold-table-inside-table-holder">
+                    <table>
+                        <thead class="table-row-inside-table">
+                            <tr>
+                                <th rowspan="3" class="background-gray-th-inside-table">№</th>
+                                <th rowspan="3">Seç</th>
+                                <th rowspan="3" style="column-width: 300px;">Əlavənin nömrəsi</th>
+                                <th rowspan="3" style="column-width: 500px;">Müştərinin adı</th>
+                                <th rowspan="3" style="column-width: 300px;">Paketin nömrəsi</th>
+                                <th colspan="14">Qızılın əyyarı</th>
+                                <th rowspan="3">Ümumi çəki</th>
+                                <th rowspan="3">Xalis çəki</th> 
+                                <th rowspan="3">Likvid dəyəri</th>
+                                <th rowspan="3">Bazar dəyəri</th>
+                            </tr>
+                            <tr>
+                                <th colspan="2">375</th>
+                                <th colspan="2">500</th>
+                                <th colspan="2">583/585</th>
+                                <th colspan="2">750</th>
+                                <th colspan="2">875</th>
+                                <th colspan="2">916</th>
+                                <th colspan="2">999</th>
+                            </tr>
+                            <tr>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                            </tr>
+                        </thead>
+                        <tbody class="Pledge-Contract-Table">
+                        @foreach (var item in @Model.PledgeList)
+                        {
+                            <tr class="table-row-inside-table">
+                                <td class="background-gray-th-inside-table table-row-count"></td>
+                                <td>
+                                    <input name="PledgeIdList[]" type="checkbox" class="pledge-list-checkbox" id="@item.Id" value="@item.Id" />
+                                </td>
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.AdditionalPledgeContractNumber" name="AdditionalPledgeContractNumber"
+                                        required readonly/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.ClientFullName" class="client_full_name_input " name="ClientFullName"
+                                        required readonly/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.PackageNumber" class="package_number_input" name="PackageNumber"
+                                        required readonly/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.TotalWeight_375" class="total_weight_input total_weight_375 readonly_table_input" name="TotalWeight_375"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.NetWeight_375" class="net_weight_input net_weight_375 readonly_table_input" name="NetWeight_375"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                        <input type="hidden" class="likvid_hidden_input"/>
+                                        <input type="hidden" class="store_hidden_input"/>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.TotalWeight_500" class="total_weight_input total_weight_500 readonly_table_input" name="TotalWeight_500"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.NetWeight_500" class="net_weight_input net_weight_500 readonly_table_input" name="NetWeight_500"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                        <input type="hidden" class="likvid_hidden_input"/>
+                                        <input type="hidden" class="store_hidden_input"/>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.TotalWeight583_585" class="total_weight_input total_weight_583_585 readonly_table_input" name="TotalWeight583_585"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.NetWeight583_585" class="net_weight_input net_weight_583_585 readonly_table_input" name="NetWeight583_585"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                        <input type="hidden" class="likvid_hidden_input"/>
+                                        <input type="hidden" class="store_hidden_input"/>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.TotalWeight_750" class="total_weight_input total_weight_750 readonly_table_input" name="TotalWeight_750"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.NetWeight_750" class="net_weight_input net_weight_750 readonly_table_input" name="NetWeight_750"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                        <input type="hidden" class="likvid_hidden_input"/>
+                                        <input type="hidden" class="store_hidden_input"/>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.TotalWeight_875" class="total_weight_input total_weight_875 readonly_table_input" name="TotalWeight_875"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.NetWeight_875" class="net_weight_input net_weight_875 readonly_table_input" name="NetWeight_875"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                        <input type="hidden" class="likvid_hidden_input"/>
+                                        <input type="hidden" class="store_hidden_input"/>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.TotalWeight_916" class="total_weight_input total_weight_916 readonly_table_input" name="TotalWeight_916"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.NetWeight_916" class="net_weight_input net_weight_916 readonly_table_input" name="NetWeight_916"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                        <input type="hidden" class="likvid_hidden_input"/>
+                                        <input type="hidden" class="store_hidden_input"/>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.TotalWeight_999" class="total_weight_input total_weight_999 readonly_table_input" name="TotalWeight_999"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.NetWeight_999" class="net_weight_input net_weight_999 readonly_table_input" name="NetWeight_999"
+                                    onchange="CalculateWeightSum(this)" readonly/>
+                                        <input type="hidden" class="likvid_hidden_input"/>
+                                        <input type="hidden" class="store_hidden_input"/>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.TotalWeight" class="total_weight" name="TotalWeight"
+                                required readonly/>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.NetWeight" class="net_weight" name="NetWeight"
+                                required readonly/>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.LikvidPrice" class="likvid_price" name="LikvidPrice"
+                                required readonly/>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="input-holder-with-label d-f">
+                                        <input asp-for="@item.StorePrice" class="store_price" name="StorePrice"
+                                required readonly/>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Table holder ends here -->
+
+            <!--Empty space div starts here-->
+            <div class="empty-space-div-30"></div>
+            <!--Empty space div ends here-->
+
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldWeight" class="f-s-14 f-w-500">Ümumi çəki</label>
+                    <input asp-for="TotalGoldWeight" type="text" id="TotalGoldWeight" required readonly>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldNetWeight" class="f-s-14 f-w-500">Xalis çəki</label>
+                    <input asp-for="TotalGoldNetWeight" type="text" id="TotalGoldNetWeight" required readonly>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldLikvidPrice" class="f-s-14 f-w-500">Məmulatın likvid qiyməti</label>
+                    <input asp-for="TotalGoldLikvidPrice" type="text" id="TotalGoldLikvidPrice" required readonly>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldMarketPrice" class="f-s-14 f-w-500">Məmulatın Bazar qiyməti</label>
+                    <input asp-for="TotalGoldMarketPrice" type="text" id="TotalGoldMarketPrice" required readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Empty space div starts here-->
+    <div class="empty-space-div-30"></div>
+    <!--Empty space div ends here-->
+
+    <div class="button-holder-inside-modal-form d-f">
+        <a asp-action="Cancel" asp-route-CorporativeContractId="@ViewData["CorporativeContractId"]" class="red-submit-button-inside-form t-d-n">Ləğv et</a>
+        <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+    </div>
+</form>    
+
+<!--Empty space div starts here-->
+<div class="empty-space-div-30"></div>
+<!--Empty space div ends here-->
+
+
+<script>
+    var checkbox_list = document.querySelectorAll(".pledge-list-checkbox");
+    for(i=0;i<checkbox_list.length;i++){
+        checkbox_list[i].addEventListener("click", function(){
+            CalculateExtractions();
+        });
+    }
+
+    function CalculateExtractions(){
+        console.clear();
+        for(j=0;j<checkbox_list.length;j++){
+            var row = checkbox_list[j].closest(".table-row-inside-table");
+            if(checkbox_list[j].checked){
+                row.classList.add("checked-table-row");
+            }else{
+                row.classList.remove("checked-table-row");
+            }
+        }
+
+        CalculateTotalSum();
+    }
+
+    function CalculateTotalSum(){
+        var input_names = ["total_weight" , "net_weight" , "likvid_price" , "store_price"];
+        for(j=0;j<input_names.length;j++){
+
+            switch(input_names[j]){
+                case "total_weight":
+                    var total_sums = document.querySelectorAll(".checked-table-row .total_weight");
+                    var sum_input = document.querySelector("#TotalGoldWeight");
+                    break;
+                case "net_weight":
+                    var total_sums = document.querySelectorAll(".checked-table-row .net_weight");
+                    var sum_input = document.querySelector("#TotalGoldNetWeight");
+                    break;
+                case "likvid_price":
+                    var total_sums = document.querySelectorAll(".checked-table-row .likvid_price");
+                    var sum_input = document.querySelector("#TotalGoldLikvidPrice");
+                    break;
+                case "store_price":
+                    var total_sums = document.querySelectorAll(".checked-table-row .store_price");
+                    var sum_input = document.querySelector("#TotalGoldMarketPrice");
+                    break;
+            }
+            var sum = 0;
+
+            for(i=0;i<total_sums.length;i++){
+                if(total_sums[i].value){
+                    sum += parseFloat(total_sums[i].value);
+                }
+            }
+            sum_input.value = parseFloat(sum); 
+            console.log(sum_input.value);
+        }
+    }
+</script>

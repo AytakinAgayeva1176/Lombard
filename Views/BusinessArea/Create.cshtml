@@ -1,0 +1,38 @@
+﻿@model Lombard.Domain.Entities.BusinessArea
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form asp-action="Create">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold"
+            id="PageIndicator" data-page="Fəaliyyət sektoru" data-indicator="Yeni fəaliyyət sektoru yaradırsınız"
+            >Fəaliyyət sektoru yarat</p>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-holder-with-label d-f">
+                <label asp-for="Area" class="f-s-14 f-w-500">Area</label>
+                <input asp-for="Area" type="text" id="Area" required
+                        oninvalid="this.setCustomValidity('Fəaliyyət sektorunu yazın')"
+                        oninput="this.setCustomValidity('')">
+            </div>
+        </div>
+
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-30"></div>
+        <!--Empty space div ends here-->
+    </div>
+
+
+    <div class="button-holder-inside-modal-form d-f">
+        <a asp-action="Index" class="red-submit-button-inside-form t-d-n">Ləğv et</a>
+        <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+    </div>
+</form>
+

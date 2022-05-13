@@ -1,0 +1,41 @@
+﻿@model Lombard.Domain.Entities.Hallmark
+
+@{
+    ViewData["Title"] = "CreateHallmark";
+}
+
+<h1>CreateHallmark</h1>
+
+<h4>Hallmark</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateHallmark">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TypeName" class="control-label"></label>
+                <input asp-for="TypeName" class="form-control" />
+                <span asp-validation-for="TypeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LikvidPriceOfOneGram" class="control-label"></label>
+                <input asp-for="LikvidPriceOfOneGram" class="form-control" />
+                <span asp-validation-for="LikvidPriceOfOneGram" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MarketPriceOfOneGram" class="control-label"></label>
+                <input asp-for="MarketPriceOfOneGram" class="form-control" />
+                <span asp-validation-for="MarketPriceOfOneGram" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

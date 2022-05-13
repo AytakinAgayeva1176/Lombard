@@ -1,0 +1,392 @@
+﻿@model Lombard.Domain.Entities.Act
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<form asp-action="Create" enctype="multipart/form-data" >
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="ParentId" type="hidden" value="@ViewData["parentId"]" />
+    
+    <input type="hidden" name="goldCount" id="goldCount" value="" />
+     <input type="hidden" name="Debtor" id="Debtor" value="@ViewData["Debtor"]" />
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold"
+            id="PageIndicator" data-page="Akt yarat" data-indicator="Hal-hazırda yeni akt yaradırsınız">
+                Akt yarat
+            </p>
+        </div>
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-row-inside-form-part d-g">
+
+                @if(ViewData["Debtor"] != null)
+                {
+                    @if (ViewData["Debtor"].ToString() == "Physical")
+                    {
+                        <div class="input-holder-with-label d-f">
+                            <label asp-for="IndividualDebtorId" class="f-s-14 f-w-500">Fiziki şəxs</label>
+                            <select asp-for="IndividualDebtorId"
+                                asp-items="(IEnumerable<SelectListItem>)@ViewData["PhysicalDebtors"]">
+                                    <option selected disabled>Fiziki borcalanı seçin</option>
+                                </select>
+                        </div>
+                    }
+
+                    else if (ViewData["Debtor"].ToString() == "Legal")
+                    {
+                        <div class="input-holder-with-label d-f">
+                            <label asp-for="LegalDebtorId" class="f-s-14 f-w-500">Hüquqi şəxs</label>
+                            <select asp-for="LegalDebtorId"
+                                asp-items="(IEnumerable<SelectListItem>)@ViewData["LegalDebtors"]">
+                                    <option selected disabled>Hüquqi borcalanı seçin</option>
+                                </select>
+                        </div>
+                    }
+                }
+
+                @{if (ViewData["IsSubAct"].ToString() == "SubAct")
+                { 
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="Name" class="f-s-14 f-w-500">Aktın adı</label>
+                        <input asp-for="Name" type="text" id="Name" value = "@ViewData["ActName"]" required readonly >
+                    </div>
+                }
+                else{
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="Name" class="f-s-14 f-w-500">Aktın adı</label>
+                        <input asp-for="Name" type="text" id="Name" required 
+                        oninvalid="this.setCustomValidity('Aktın adını yazın')"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                }}
+             
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Date" class="f-s-14 f-w-500">Bağlanma tarixi</label>
+                    <input asp-for="Date" type="date" id="Date" required 
+                    oninvalid="this.setCustomValidity('Bağlanma tarixini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                @if (ViewData["IsSelected"].ToString() == "notSelected")
+                {
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="ActType" class="f-s-14 f-w-500">Aktın növü</label>
+                        <select asp-for="ActType" asp-items="(IEnumerable<SelectListItem>)@ViewData["ActTypes"]"></select>
+                    </div>
+                }
+                <div class="input-holder-with-label d-f">
+                    <label  class="f-s-14 f-w-500">Şəkil</label>
+                    <input name="Image" type="file"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            <!-- Table holder starts here -->
+            <div class="main-table-holder-inside-page-cont d-f">
+                <div class="label-holder-inside-table-holder d-f">
+                    <p class="f-s-24 f-w-bold">Qızıllar</p>
+                </div>
+                <div class="table-inside-table-holder">
+                    <table>
+                        <thead>
+                            <tr class="table-row-inside-table">
+                                <th class="background-gray-th-inside-table">№</th>
+                                <th onclick="sortTable(1)">
+                                    <div class="d-f">
+                                        Məmulatın adı
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                                <th onclick="sortTable(2)">
+                                    <div class="d-f">
+                                        Əyarı
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                                <th onclick="sortTable(3)">
+                                    <div class="d-f">
+                                        1 qr Likvid qiyməti
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                                <th onclick="sortTable(4)">
+                                    <div class="d-f">
+                                        1 qr Bazar qiyməti
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                                <th onclick="sortTable(5)">
+                                    <div class="d-f">
+                                        Sayı
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                                <th onclick="sortTable(6)">
+                                    <div class="d-f">
+                                        Ümumi çəki
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                                <th onclick="sortTable(7)">
+                                    <div class="d-f">
+                                        Daş çəki
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                                <th onclick="sortTable(8)">
+                                    <div class="d-f">
+                                        Xalis çəki
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                                <th onclick="sortTable(9)">
+                                    <div class="d-f">
+                                        Məmulatın likvid qiyməti
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                                <th onclick="sortTable(10)">
+                                    <div class="d-f">
+                                        Məmulatın Bazar qiyməti
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                                <th onclick="sortTable(11)">
+                                    <div class="d-f">
+                                        Qeyd
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                                <th>
+                                    <div class="d-f">
+                                        <p>Sil</p>
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                        </svg> 
+                                    </div>                                 
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="Akt-Gold-details">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="elm-with-tooltip add-button-svg-holder" data-tooltip="Qızıl əlavə etmək üçün klikləyin">
+                    <a class="addButtonForActGold" onclick="CheckGoldTableUpdates()">
+                        <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="68" height="68" rx="34" fill="#E3EBFF"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M34 23C27.925 23 23 27.925 23 34C23 40.075 27.925 45 34 45C40.075 45 45 40.075 45 34C45 27.925 40.075 23 34 23ZM35 38C35 38.2652 34.8946 38.5196 34.7071 38.7071C34.5196 38.8946 34.2652 39 34 39C33.7348 39 33.4804 38.8946 33.2929 38.7071C33.1054 38.5196 33 38.2652 33 38V35H30C29.7348 35 29.4804 34.8946 29.2929 34.7071C29.1054 34.5196 29 34.2652 29 34C29 33.7348 29.1054 33.4804 29.2929 33.2929C29.4804 33.1054 29.7348 33 30 33H33V30C33 29.7348 33.1054 29.4804 33.2929 29.2929C33.4804 29.1054 33.7348 29 34 29C34.2652 29 34.5196 29.1054 34.7071 29.2929C34.8946 29.4804 35 29.7348 35 30V33H38C38.2652 33 38.5196 33.1054 38.7071 33.2929C38.8946 33.4804 39 33.7348 39 34C39 34.2652 38.8946 34.5196 38.7071 34.7071C38.5196 34.8946 38.2652 35 38 35H35V38Z" fill="#3B72FF"/>
+                        </svg>     
+                    </a>
+                </div>
+            </div>
+            <!-- Table holder ends here -->
+
+            <!--Empty space div starts here-->
+            <div class="empty-space-div-30"></div>
+            <!--Empty space div ends here-->
+
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldCount" class="f-s-14 f-w-500">Ümumi say</label>
+                    <input asp-for="TotalGoldCount" type="text" id="TotalGoldCount" required >
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldWeight" class="f-s-14 f-w-500">Ümumi çəki</label>
+                    <input asp-for="TotalGoldWeight" type="text" id="TotalGoldWeight" required readonly>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalJewelsWeight" class="f-s-14 f-w-500">Daş çəki</label>
+                    <input asp-for="TotalJewelsWeight" type="text" id="TotalJewelsWeight" required readonly>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldNetWeight" class="f-s-14 f-w-500">Xalis çəki</label>
+                    <input asp-for="TotalGoldNetWeight" type="text" id="TotalGoldNetWeight" required readonly>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldLikvidPrice" class="f-s-14 f-w-500">Məmulatın likvid qiyməti</label>
+                    <input asp-for="TotalGoldLikvidPrice" type="text" id="TotalGoldLikvidPrice" required readonly>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldMarketPrice" class="f-s-14 f-w-500">Məmulatın Bazar qiyməti</label>
+                    <input asp-for="TotalGoldMarketPrice" type="text" id="TotalGoldMarketPrice" required readonly>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="button-holder-inside-modal-form d-f">
+            <a asp-action="Cancel" class="red-submit-button-inside-form t-d-n" asp-route-returnUrl="@ViewData["returnUrl"]">Ləğv et</a>
+            <button type="submit"  asp-route-DebtorId="@ViewData["DebtorId"]"  asp-route-actType="@ViewData["actType"]"  asp-route-returnUrl="@ViewData["returnUrl"]" class="green-submit-button-inside-form">Təsdiqlə</button>
+        </div>
+    </div>
+</form>
+
+
+<script>
+    function CalculateTotalValue(gold_input_element){
+        var Value_gold_input = parseFloat(gold_input_element.value);
+        var CN_gold_input = gold_input_element.className;
+        var ID_gold_input = gold_input_element.id;
+
+        console.clear();
+        // Finding sum of gold input elements
+            var gold_input_values = document.getElementsByClassName(CN_gold_input);
+            var total_gold_value = 0;
+
+            for(i = 0; i < gold_input_values.length; i++){
+                if(parseFloat(gold_input_values[i].value)){
+                    total_gold_value += parseFloat(gold_input_values[i].value);
+                }
+            }
+
+            // changing main input value to sum
+                switch(ID_gold_input){
+                    case "TotalWeight":
+                        document.querySelector('#TotalGoldWeight').value = total_gold_value;
+                        break;
+                    case "JewelWeight":
+                        document.querySelector('#TotalJewelsWeight').value = total_gold_value;
+                        break;
+                    case "NetWeight":
+                        document.querySelector('#TotalGoldNetWeight').value = total_gold_value;
+                        break;
+                    case "LikvidPrice":
+                        document.querySelector('#TotalGoldLikvidPrice').value = total_gold_value;
+                        break;
+                    case "MarketPrice":
+                        document.querySelector('#TotalGoldMarketPrice').value = total_gold_value;
+                        break;
+                    case "ItemsCount":
+                        document.querySelector('#TotalGoldCount').value = total_gold_value;
+                        break;
+                }
+        //--------------------------------------------//
+    }
+
+    function CheckGoldTableUpdates(){
+        var input_names_for_gold = ["total_weight_input" , "jewel_weight_input" , "net_weight_input" ,"likvid_price_input", "market_price_input" , "gold_count_input"];
+        var total_gold_value = 0;
+        console.clear();
+
+        for(i = 0; i < input_names_for_gold.length; i++){
+            var gold_input_values = document.getElementsByClassName(input_names_for_gold[i]);
+
+            console.log(input_names_for_gold[i]);
+
+            for(j = 0; j < gold_input_values.length; j++){
+                if(parseFloat(gold_input_values[j].value)){
+                    total_gold_value += parseFloat(gold_input_values[j].value);
+                    console.log(total_gold_value);
+                }
+            }
+
+            // changing main input value to sum
+                switch(input_names_for_gold[i]){
+                    case "total_weight_input":
+                        document.querySelector('#TotalGoldWeight').value = total_gold_value;
+                        break;
+                    case "jewel_weight_input":
+                        document.querySelector('#TotalJewelsWeight').value = total_gold_value;
+                        break;
+                    case "net_weight_input":
+                        document.querySelector('#TotalGoldNetWeight').value = total_gold_value;
+                        break;
+                    case "likvid_price_input":
+                        document.querySelector('#TotalGoldLikvidPrice').value = total_gold_value;
+                        break;
+                    case "market_price_input":
+                        document.querySelector('#TotalGoldMarketPrice').value = total_gold_value;
+                        break;
+                    case "gold_count_input":
+                        document.querySelector('#TotalGoldCount').value = total_gold_value;
+                        break;
+                }
+
+            total_gold_value = 0;
+        }
+    }
+
+    function CalculateNetWeight(weight_input){
+
+        var closest_tr = weight_input.closest(".table-row-inside-table");
+        var total_weight_input = closest_tr.querySelector(".total_weight_input");
+        var jewel_weight_input = closest_tr.querySelector(".jewel_weight_input");
+        var net_weight_input = closest_tr.querySelector(".net_weight_input");
+        var one_gram_likvid_price_input = closest_tr.querySelector(".one_gram_likvid_price_input");
+        var one_gram_market_price_input = closest_tr.querySelector(".one_gram_market_price_input");
+        var likvid_price_input = closest_tr.querySelector(".likvid_price_input");
+        var market_price_input = closest_tr.querySelector(".market_price_input");
+
+        var net_weight_input_value = parseFloat(total_weight_input.value) - parseFloat(jewel_weight_input.value);
+        var likvid_price_input_value = parseFloat(net_weight_input_value) * parseFloat(one_gram_likvid_price_input.value);
+        var market_price_input_value = parseFloat(net_weight_input_value) * parseFloat(one_gram_market_price_input.value);
+
+
+        if(net_weight_input_value > 0){
+            net_weight_input.value = parseFloat(net_weight_input_value);
+        }else{
+            net_weight_input.value = 0;
+        }
+
+        if(likvid_price_input_value > 0 && market_price_input_value > 0){
+            likvid_price_input.value = parseFloat(likvid_price_input_value);
+            market_price_input.value = parseFloat(market_price_input_value);
+        }else{
+            likvid_price_input.value = 0;
+            market_price_input.value = 0;
+        }
+
+        CheckGoldTableUpdates();
+    }
+
+
+    $("#IndividualDebtorId").select2( {
+	    placeholder: "Fiziki borcalanı seçin",
+	    allowClear: false
+	});
+    $("#LegalDebtorId").select2( {
+	    placeholder: "Hüquqi borcalanı seçin",
+	    allowClear: false
+	});
+</script>

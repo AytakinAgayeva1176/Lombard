@@ -1,0 +1,95 @@
+﻿@model Lombard.Domain.Entities.Bank
+
+
+        <form asp-action="Create" asp-controller="Bank" method="post">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-holder-inside-modal d-f">
+
+                <div class="form-row-inside-modal d-f">
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="Name" class="f-s-14 f-w-500">Bankın adı</label>
+                        <input asp-for="Name" type="text" id="Name" required 
+                        oninvalid="this.setCustomValidity('Bankın adını yazın')"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="ForPrint" class="f-s-14 f-w-500">Çap üçün bank adı</label>
+                        <input asp-for="ForPrint" type="text" id="ForPrint" required
+                        oninvalid="this.setCustomValidity('Çap üçün bankın adını yazın')"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                </div>
+                   <div class="input-holder-with-label d-f">
+                        <label asp-for="Branch" class="f-s-14 f-w-500">Filial</label>
+                        <input asp-for="Branch" type="text" id="Branch" required
+                        oninvalid="this.setCustomValidity('Çap üçün bankın adını yazın')"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                <div class="form-row-inside-modal d-f">
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="VOEN" class="f-s-14 f-w-500">VÖEN</label>
+                        <input asp-for="VOEN" type="text" id="VOEN" required
+                        oninvalid="this.setCustomValidity('vöen nömrəsini yazın')"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="CorrespondentAccount" class="f-s-14 f-w-500">Müxbir hesab</label>
+                        <input asp-for="CorrespondentAccount" type="text" id="CorrespondentAccount" required
+                        oninvalid="this.setCustomValidity('Müxbir hesabını yazın')"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                </div>
+
+                <div class="form-row-inside-modal d-f">
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="SWIFT" class="f-s-14 f-w-500">SWIFT</label>
+                        <input asp-for="SWIFT" type="text" id="SWIFT" required
+                        oninvalid="this.setCustomValidity('Swift nömrəsini yazın')"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="IBAN" class="f-s-14 f-w-500">IBAN</label>
+                        <input asp-for="IBAN" type="text" id="IBAN" required
+                        oninvalid="this.setCustomValidity('IBAN nömrəsini yazın')"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                </div>
+
+                <div class="form-row-inside-modal d-f">
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="Address" class="f-s-14 f-w-500">Ünvan</label>
+                        <input asp-for="Address" type="text" id="Address" required
+                        oninvalid="this.setCustomValidity('Ünvanı yazın')"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="Email" class="f-s-14 f-w-500">Email</label>
+                        <input asp-for="Email" type="email" id="Email"
+                        oninvalid="this.setCustomValidity('Email adresini yazın')"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                </div>
+
+                <div class="form-row-inside-modal d-f">
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="Code" class="f-s-14 f-w-500">Kod</label>
+                        <input asp-for="Code" type="text" id="Code" required
+                        oninvalid="this.setCustomValidity('Kodu yazın')"
+                        oninput="this.setCustomValidity('')">
+                    </div>
+                </div>
+
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="OtherDetails" class="f-s-14 f-w-500">Digər Rekvizitlər (Xarici banklar)</label>
+                    <textarea asp-for="OtherDetails" type="area" id="OtherDetails" rows="10"></textarea>
+                </div>
+
+                <div class="button-holder-inside-modal-form d-f">
+                    <button type="button" class="red-submit-button-inside-form" onclick="ToggleModal(this)" data-modal="modal-for-bank">Ləğv et</button>
+                    <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+                </div>
+            </div>
+        </form>
+

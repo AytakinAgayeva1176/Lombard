@@ -1,0 +1,168 @@
+﻿@model Lombard.Domain.Entities.Pledge
+
+@{
+    int g = (int)ViewData["newCount"];
+}
+
+
+<tr class="table-row-inside-table excel-table-row-@ViewData["newCount"]" data-h-count="@ViewData["newCount"]">
+    <td class="background-gray-th-inside-table table-row-count"></td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="ClientFullName" class="client_full_name_input client_full_name_input_@ViewData["newCount"]" name="ClientFullName_@ViewData["newCount"]"
+            required autocomplete="off"/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="AdditionalPledgeContractNumber" class="contract_number_input contract_number_input_@ViewData["newCount"]" name="AdditionalPledgeContractNumber_@ViewData["newCount"]"
+            required/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="PackageNumber" class="package_number_input package_number_input_@ViewData["newCount"]" name="PackageNumber_@ViewData["newCount"]"
+            required/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="TotalWeight_375" class="total_weight_input total_weight_375" name="TotalWeight_375_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="NetWeight_375" class="net_weight_input net_weight_375" name="NetWeight_375_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+            <input type="hidden" class="likvid_hidden_input"/>
+            <input type="hidden" class="store_hidden_input"/>
+        </div>
+    </td>
+
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="TotalWeight_500" class="total_weight_input total_weight_500" name="TotalWeight_500_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="NetWeight_500" class="net_weight_input net_weight_500" name="NetWeight_500_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+            <input type="hidden" class="likvid_hidden_input"/>
+            <input type="hidden" class="store_hidden_input"/>
+        </div>
+    </td>
+
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="TotalWeight583_585" class="total_weight_input total_weight_583_585" name="TotalWeight583_585_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="NetWeight583_585" class="net_weight_input net_weight_583_585" name="NetWeight583_585_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+            <input type="hidden" class="likvid_hidden_input"/>
+            <input type="hidden" class="store_hidden_input"/>
+        </div>
+    </td>
+
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="TotalWeight_750" class="total_weight_input total_weight_750" name="TotalWeight_750_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="NetWeight_750" class="net_weight_input net_weight_750" name="NetWeight_750_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+            <input type="hidden" class="likvid_hidden_input"/>
+            <input type="hidden" class="store_hidden_input"/>
+        </div>
+    </td>
+
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="TotalWeight_875" class="total_weight_input total_weight_875" name="TotalWeight_875_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="NetWeight_875" class="net_weight_input net_weight_875" name="NetWeight_875_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+            <input type="hidden" class="likvid_hidden_input"/>
+            <input type="hidden" class="store_hidden_input"/>
+        </div>
+    </td>
+
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="TotalWeight_916" class="total_weight_input total_weight_916" name="TotalWeight_916_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="NetWeight_916" class="net_weight_input net_weight_916" name="NetWeight_916_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+            <input type="hidden" class="likvid_hidden_input"/>
+            <input type="hidden" class="store_hidden_input"/>
+        </div>
+    </td>
+
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="TotalWeight_999" class="total_weight_input total_weight_999" name="TotalWeight_999_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="NetWeight_999" class="net_weight_input net_weight_999" name="NetWeight_999_@ViewData["newCount"]"
+             onchange="CalculateWeightSum(this)"/>
+            <input type="hidden" class="likvid_hidden_input"/>
+            <input type="hidden" class="store_hidden_input"/>
+        </div>
+    </td>
+
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="TotalWeight" class="total_weight" name="TotalWeight_@ViewData["newCount"]"
+            required readonly/>
+        </div>
+    </td>
+
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="NetWeight" class="net_weight" name="NetWeight_@ViewData["newCount"]"
+            required readonly/>
+        </div>
+    </td>
+
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="LikvidPrice" class="likvid_price" name="LikvidPrice_@ViewData["newCount"]"
+            required readonly/>
+        </div>
+    </td>
+
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="StorePrice" class="store_price" name="StorePrice_@ViewData["newCount"]"
+            required readonly/>
+        </div>
+    </td>
+
+    <td>
+        <a onclick="RemoveThisAccount(this); CalculateTotalSum()" class="elm-with-tooltip" data-tooltip-on-right="Silmək üçün klikləyin">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.25 6H17.25V4.125C17.25 3.29766 16.5773 2.625 15.75 2.625H8.25C7.42266 2.625 6.75 3.29766 6.75 4.125V6H3.75C3.33516 6 3 6.33516 3 6.75V7.5C3 7.60313 3.08437 7.6875 3.1875 7.6875H4.60312L5.18203 19.9453C5.21953 20.7445 5.88047 21.375 6.67969 21.375H17.3203C18.1219 21.375 18.7805 20.7469 18.818 19.9453L19.3969 7.6875H20.8125C20.9156 7.6875 21 7.60313 21 7.5V6.75C21 6.33516 20.6648 6 20.25 6ZM15.5625 6H8.4375V4.3125H15.5625V6Z" fill="#3B72FF"/>
+            </svg>
+        </a>                                        
+    </td>
+</tr>

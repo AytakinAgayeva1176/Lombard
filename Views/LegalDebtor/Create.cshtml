@@ -1,0 +1,197 @@
+﻿@model Lombard.Domain.Entities.LegalDebtor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<form asp-action="Create" asp-controller="LegalDebtor" asp-area=none>
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold"
+            id="PageIndicator" data-page="Hüquqi borcalan" data-indicator="Yeni Hüquqi borcalan yaradırsınız"
+            >Hüquqi borcalan yarat</p>
+        </div>
+
+
+        <input type="hidden" name="bankCount" id="bankCount" value="" />
+        <input type="hidden" name="memberCount" id="memberCount" value="" />
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="label-row-inside-form-part d-f">
+                <p class="f-s-18 f-w-bold">Şəxsi məlumatlar</p>
+            </div>
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Name" class="f-s-14 f-w-500">Şirkət adı</label>
+                    <input asp-for="Name" type="text" id="Name" required
+                           oninvalid="this.setCustomValidity('Borcalanın adını yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="VOEN" class="f-s-14 f-w-500">VÖEN</label>
+                    <input asp-for="VOEN" type="text" id="VOEN" required
+                           oninvalid="this.setCustomValidity('Vöeni yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="RegisteredAddress" class="f-s-14 f-w-500">Qeydiyyat ünvanı</label>
+                    <input asp-for="RegisteredAddress" type="text" id="RegisteredAddress" required
+                           oninvalid="this.setCustomValidity('Borcalanın qeydiyyat ünvanını yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="CurrentLivingAddress" class="f-s-14 f-w-500">Faktiki yaşayış ünvanı</label>
+                    <input asp-for="CurrentLivingAddress" type="text" id="CurrentLivingAddress" required
+                           oninvalid="this.setCustomValidity('Borcalanın faktiki yaşayış ünvanını yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="label-row-inside-form-part d-f">
+                <p class="f-s-18 f-w-bold">Fəaliyyət sahəsi məlumatları</p>
+            </div>
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f align-center f-center">
+                    <label asp-for="IsResident" class="f-s-14 f-w-500">Status</label>
+                    <select asp-for="IsResident" class="form-control" asp-items="(IEnumerable<SelectListItem>)@ViewData["ResidentStatuses"]"></select>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="BusinessArea" class="f-s-14 f-w-500">Fəaliyyət Sektoru</label>
+                    <select asp-for="BusinessArea" class="form-control" asp-items="(IEnumerable<SelectListItem>)@ViewData["BusinessAreas"]"></select>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="RegistrationStatus" class="f-s-14 f-w-500">Qeydiyyat Statusu</label>
+                    <select asp-for="RegistrationStatus" class="form-control" asp-items="(IEnumerable<SelectListItem>)@ViewData["RegistrationStatuses"]"></select>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="City" class="f-s-14 f-w-500">Şəhər</label>
+                    <select asp-for="City" class="form-control" asp-items="(IEnumerable<SelectListItem>)@ViewData["Cities"]"></select>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="HeadAccountant" class="f-s-14 f-w-500">Baş Mühasib</label>
+                    <input asp-for="HeadAccountant" type="text" id="HeadAccountant" required
+                           oninvalid="this.setCustomValidity('Baş mühasibi yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="DirectorName" class="f-s-14 f-w-500">Direktor</label>
+                    <input asp-for="DirectorName" type="text" id="DirectorName" required
+                           oninvalid="this.setCustomValidity('Direktoru yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-holder-with-label d-f">
+                <label asp-for="Description" class="f-s-14 f-w-500">Qeyd</label>
+                <textarea rows="5" asp-for="Description"></textarea>
+            </div>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="label-row-inside-form-part d-f">
+                <p class="f-s-18 f-w-bold">Əlaqə məlumatları</p>
+            </div>
+            <div class="input-row-four-col-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MobileNumber" class="f-s-14 f-w-500">Mobil telefonu</label>
+                    <input asp-for="MobileNumber" type="tel" id="MobileNumber" class="custom_phone_number" required
+                        minlength="9" maxlength="14"   
+                        oninvalid="this.setCustomValidity('Borcalanın mobil telefonunu yazın')"
+                        oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MobileAdditional1" class="f-s-14 f-w-500">Mobil telefonu</label>
+                    <input asp-for="MobileAdditional1" type="tel" id="MobileAdditional1" class="custom_phone_number" required
+                        minlength="9" maxlength="14"
+                        oninvalid="this.setCustomValidity('Borcalanın mobil telefonunu yazın')"
+                        oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MobileAdditional2" class="f-s-14 f-w-500">Mobil telefonu</label>
+                    <input asp-for="MobileAdditional2" type="tel" id="MobileAdditional2" class="custom_phone_number" required
+                        minlength="9" maxlength="14"
+                        oninvalid="this.setCustomValidity('Borcalanın mobil telefonunu yazın')"
+                        oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MobileAdditional3" class="f-s-14 f-w-500">Mobil telefonu</label>
+                    <input asp-for="MobileAdditional3" type="tel" id="MobileAdditional3" class="custom_phone_number" required
+                        minlength="9" maxlength="14"   
+                        oninvalid="this.setCustomValidity('Borcalanın mobil telefonunu yazın')"
+                        oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Phone" class="f-s-14 f-w-500">Ev telefonu</label>
+                    <input asp-for="Phone" type="tel" id="Phone" required
+                        oninvalid="this.setCustomValidity('Borcalanın ev telefonunu yazın')"
+                        oninput="this.setCustomValidity('')">
+                </div>
+            </div>
+
+            <!--Empty space div starts here-->
+            <div class="empty-space-div-30"></div>
+            <!--Empty space div ends here-->
+
+            <div class="input-row-four-col-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MobileAdditional4" class="f-s-14 f-w-500">Əlavə mobil telefonu</label>
+                    <input asp-for="MobileAdditional4" type="tel" id="MobileAdditional4" class="custom_phone_number" 
+                        minlength="9" maxlength="14">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="PhoneAdditional" class="f-s-14 f-w-500">Əlavə ev telefon</label>
+                    <input asp-for="PhoneAdditional" type="tel" id="PhoneAdditional">
+                </div>
+            </div>
+        </div>
+
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-30"></div>
+        <!--Empty space div ends here-->
+    </div>
+
+
+    <div class="label-holder-inside-form-holder d-f">
+        <p class="f-s-24 f-w-bold">Ailə üzvləri</p>
+    </div>
+    <div class="Debtor-Family-member-details d-f f-dir-col"></div>
+    <div class="elm-with-tooltip add-button-svg-holder" data-tooltip="Ailə üzvü əlavə etmək üçün klikləyin">
+        <a class="addButtonForFamilyMember">
+            <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="68" height="68" rx="34" fill="#E3EBFF" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M34 23C27.925 23 23 27.925 23 34C23 40.075 27.925 45 34 45C40.075 45 45 40.075 45 34C45 27.925 40.075 23 34 23ZM35 38C35 38.2652 34.8946 38.5196 34.7071 38.7071C34.5196 38.8946 34.2652 39 34 39C33.7348 39 33.4804 38.8946 33.2929 38.7071C33.1054 38.5196 33 38.2652 33 38V35H30C29.7348 35 29.4804 34.8946 29.2929 34.7071C29.1054 34.5196 29 34.2652 29 34C29 33.7348 29.1054 33.4804 29.2929 33.2929C29.4804 33.1054 29.7348 33 30 33H33V30C33 29.7348 33.1054 29.4804 33.2929 29.2929C33.4804 29.1054 33.7348 29 34 29C34.2652 29 34.5196 29.1054 34.7071 29.2929C34.8946 29.4804 35 29.7348 35 30V33H38C38.2652 33 38.5196 33.1054 38.7071 33.2929C38.8946 33.4804 39 33.7348 39 34C39 34.2652 38.8946 34.5196 38.7071 34.7071C38.5196 34.8946 38.2652 35 38 35H35V38Z" fill="#3B72FF" />
+            </svg>
+        </a>
+    </div>
+
+
+    <div class="label-holder-inside-form-holder d-f">
+        <p class="f-s-24 f-w-bold">Bank hesabları</p>
+    </div>
+    <div class="Debtor-Bank-account-details-form d-f f-dir-col"></div>
+    <div class="elm-with-tooltip add-button-svg-holder" data-tooltip="Bank hesabı əlavə etmək üçün klikləyin">
+        <a class="addButtonForBankAccount">
+            <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="68" height="68" rx="34" fill="#E3EBFF" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M34 23C27.925 23 23 27.925 23 34C23 40.075 27.925 45 34 45C40.075 45 45 40.075 45 34C45 27.925 40.075 23 34 23ZM35 38C35 38.2652 34.8946 38.5196 34.7071 38.7071C34.5196 38.8946 34.2652 39 34 39C33.7348 39 33.4804 38.8946 33.2929 38.7071C33.1054 38.5196 33 38.2652 33 38V35H30C29.7348 35 29.4804 34.8946 29.2929 34.7071C29.1054 34.5196 29 34.2652 29 34C29 33.7348 29.1054 33.4804 29.2929 33.2929C29.4804 33.1054 29.7348 33 30 33H33V30C33 29.7348 33.1054 29.4804 33.2929 29.2929C33.4804 29.1054 33.7348 29 34 29C34.2652 29 34.5196 29.1054 34.7071 29.2929C34.8946 29.4804 35 29.7348 35 30V33H38C38.2652 33 38.5196 33.1054 38.7071 33.2929C38.8946 33.4804 39 33.7348 39 34C39 34.2652 38.8946 34.5196 38.7071 34.7071C38.5196 34.8946 38.2652 35 38 35H35V38Z" fill="#3B72FF" />
+            </svg>
+        </a>
+    </div>
+
+    <div class="button-holder-inside-modal-form d-f">
+        <a asp-action="Index" class="red-submit-button-inside-form t-d-n">Ləğv et</a>
+        <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+    </div>
+</form>
+
+<!--Empty space div starts here-->
+<div class="empty-space-div-50"></div>
+<!--Empty space div ends here-->

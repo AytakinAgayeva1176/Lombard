@@ -1,0 +1,237 @@
+﻿@model Lombard.Domain.ViewModels.CorporativeContractVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<form asp-action="Create">
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold"
+               id="PageIndicator" data-page="Korporativ müqavilə" data-indicator="Korporativ müqavilə yaradırsınız">Korporativ müqavilə yarat</p>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input asp-for="CorporativeContract.ParentId" type="hidden" value="@ViewData["parentId"]" />
+
+        @if (ViewData["parentId"] == null)
+        {
+
+            <div class="form-part-inside-form-holder d-f">
+                <div class="input-holder-with-label d-f">
+                    <label for="Debtors" class="f-s-14 f-w-500">Borcalan</label>
+                    <select id="Debtors" asp-for="DebtorId" asp-items="(IEnumerable<SelectListItem>)@ViewData["Debtors"]"
+                        onchange="DebtorChange(this)">
+                        <option selected disabled>Borcalanı Seçin</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-part-inside-form-holder d-f">
+                <div class="label-row-inside-form-part d-f">
+                    <p class="f-s-18 f-w-bold">Müştəri</p>
+                </div>
+                <div class="input-row-inside-form-part d-g">
+                    <div class="input-holder-with-label d-f">
+                        <label class="f-s-14 f-w-500">Adı, Soyadı , Ata adı</label>
+                        <input type="text" id="DebtorFullname"
+                           readonly value="">
+                    </div>
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="CorporativeContract.AccountNumber" class="f-s-14 f-w-500">Hesab nömrəsi</label>
+                        <input asp-for="CorporativeContract.AccountNumber" type="text" id="DebtorAccountNumber"
+                           readonly>
+                    </div>
+                </div>
+            </div>
+        }
+
+        else
+        {
+            <div class="form-part-inside-form-holder d-f">
+                <div class="label-row-inside-form-part d-f">
+                    <p class="f-s-18 f-w-bold">Müştəri</p>
+                </div>
+                <div class="input-row-inside-form-part d-g">
+                    <div class="input-holder-with-label d-f">
+                        <label class="f-s-14 f-w-500">Adı, Soyadı , Ata adı</label>
+                        <input type="text" id="DebtorFullname"
+                           readonly value="@ViewData["Debtor"]">
+                    </div>
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="CorporativeContract.AccountNumber" class="f-s-14 f-w-500">Hesab nömrəsi</label>
+                        <input asp-for="CorporativeContract.AccountNumber" value="@ViewData["AccountNumber"]" type="text" id="DebtorAccountNumber"
+                           readonly>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="label-row-inside-form-part d-f">
+                <p class="f-s-18 f-w-bold">Müqavilə məlumatları</p>
+            </div>
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="CorporativeContract.ContractNo" class="f-s-14 f-w-500">Müqavilənin nömrəsi</label>
+                    <input asp-for="CorporativeContract.ContractNo" type="text" id="CorporativeContract.ContractNo" required
+                           oninvalid="this.setCustomValidity('Müqavilənin nömrəsini yazın')"
+                           oninput="this.setCustomValidity('')" value="@ViewData["ContractNo"]">
+                </div>
+            </div>
+        </div>
+        <div class="form-part-inside-form-holder d-f">
+            <div class="label-row-inside-form-part d-f">
+                <p class="f-s-18 f-w-bold">Kredit məlumatları</p>
+            </div>
+            <div class="input-row-inside-form-part d-g">
+
+
+                @if (ViewData["parentId"] == null)
+                {
+
+
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="CorporativeContract.ProductId" class="f-s-14 f-w-500">Məhsul adı</label>
+                        <select asp-for="CorporativeContract.ProductId"
+                            asp-items="(IEnumerable<SelectListItem>)@ViewData["Products"]"></select>
+                    </div>
+
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="CorporativeContract.CreditLimit" class="f-s-14 f-w-500">Kredit Limiti</label>
+                        <input asp-for="CorporativeContract.CreditLimit" type="text" id="CorporativeContract.CreditLimit" required
+                           oninvalid="this.setCustomValidity('Kredit Limitini yazın')"
+                           oninput="this.setCustomValidity('')">
+                    </div>
+                }
+                else
+                {
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="CorporativeContract.CreditAmount" class="f-s-14 f-w-500">Kreditin məbləği</label>
+                        <input asp-for="CorporativeContract.CreditAmount" type="text" id="CorporativeContract.CreditAmount" required
+                           oninvalid="this.setCustomValidity('Kreditin məbləğini yazın')"
+                           oninput="this.setCustomValidity('')">
+                    </div>
+                }
+
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="CorporativeContract.Currency" class="f-s-14 f-w-500">Valyuta</label>
+                    <select asp-for="CorporativeContract.Currency"  id="CorporativeContract.Currency">
+                        <option>AZN</option>
+                        <option>USD</option>
+                    </select>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="CorporativeContract.GivingTime" class="f-s-14 f-w-500">Verilmə tarixi</label>
+                    <input asp-for="CorporativeContract.GivingTime" type="date" id="CorporativeContract.GivingTime" required
+                           oninvalid="this.setCustomValidity('Verilmə tarixini yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="CorporativeContract.Period" class="f-s-14 f-w-500">Müddət</label>
+                    <input asp-for="CorporativeContract.Period" type="text" id="CorporativeContract.Period" required
+                           oninvalid="this.setCustomValidity('Müddəti yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                @if (ViewData["parentId"] != null)
+                {
+                    <div class="input-holder-with-label d-f">
+                        <label asp-for="CorporativeContract.PaymentDate" class="f-s-14 f-w-500">Ödəniş tarixi</label>
+                        <input asp-for="CorporativeContract.PaymentDate" type="text" id="CorporativeContract.PaymentDate" required
+                           oninvalid="this.setCustomValidity('Ödəniş tarixini yazın')"
+                           oninput="this.setCustomValidity('')">
+                    </div>
+                }
+
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="CorporativeContract.DiscountedMonths" class="f-s-14 f-w-500">Güzəşt ayları</label>
+                    <input asp-for="CorporativeContract.DiscountedMonths" type="text" id="CorporativeContract.DiscountMonth" required
+                           oninvalid="this.setCustomValidity('Güzəşt aylarını yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="CorporativeContract.Comission" class="f-s-14 f-w-500">Komissiya</label>
+                    <input asp-for="CorporativeContract.Comission" type="text" id="CorporativeContract.Comission" required
+                           oninvalid="this.setCustomValidity('Komissiyanı yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="CorporativeContract.Percentage" class="f-s-14 f-w-500">Faiz dərəcəsi</label>
+                    <input asp-for="CorporativeContract.Percentage" type="text" id="CorporativeContract.Percentage" required
+                           oninvalid="this.setCustomValidity('Faiz dərəcəsini yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="CorporativeContract.FIFD" class="f-s-14 f-w-500">FIFD</label>
+                    <input asp-for="CorporativeContract.FIFD" type="text" id="CorporativeContract.FIFD" required
+                           oninvalid="this.setCustomValidity('Cəriməni yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+
+            </div>
+        </div>
+
+
+        @if (ViewData["parentId"] == null)
+        {
+            <div class="form-part-inside-form-holder d-f">
+                <div class="input-holder-with-label d-f">
+                    <label for="GuaranterId" class="f-s-14 f-w-500">Zamin</label>
+                    <select asp-for="GuaranterId" asp-items="(IEnumerable<SelectListItem>)@ViewData["Debtors"]">
+                        <option selected disabled>Zamini seçin</option>
+                    </select>
+                </div>
+            </div>
+        }
+
+
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-30"></div>
+        <!--Empty space div ends here-->
+    </div>
+
+    <div class="button-holder-inside-modal-form d-f">
+        <a asp-action="Cancel" asp-route-returnUrl="@ViewData["returnUrl"]" class="red-submit-button-inside-form t-d-n">Ləğv et</a>
+        <button type="submit" asp-route-parentId="@ViewData["parentId"]" class="green-submit-button-inside-form">Təsdiqlə</button>
+    </div>
+
+</form>
+
+<!--Empty space div starts here-->
+<div class="empty-space-div-30"></div>
+<!--Empty space div ends here-->
+
+<script>
+    function DebtorChange(act_select) {
+        var parent_form = act_select.parentElement.parentElement.parentElement;
+        var Debtor_name_input = parent_form.querySelector('#DebtorFullname');
+        var Debtor_account_number_input = parent_form.querySelector('#DebtorAccountNumber');
+
+        console.clear();
+
+        $.ajax({
+          url: '/IndividualContract/GetDebtorFullnameAndAccountNumber/?DebtorId=' + act_select.value,
+          type: 'GET',
+          dataType: 'json',
+          success: function (result) {
+              var FullName = result.fullName;
+              var AccounNumber = result.accounNumber;
+
+              Debtor_name_input.value = FullName
+              Debtor_account_number_input.value = AccounNumber
+          }
+        });
+    }
+
+    $("#Debtors").select2( {
+        placeholder: "Borcalanı seçin",
+        allowClear: false
+    });
+    $("#GuaranterId").select2( {
+        placeholder: "Zamini seçin",
+        allowClear: false
+    });
+</script>

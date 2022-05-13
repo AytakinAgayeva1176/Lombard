@@ -1,0 +1,110 @@
+﻿@model Lombard.Domain.Entities.Gold
+
+@{
+    ViewData["Title"] = "EditGold";
+}
+
+
+<form asp-action="EditGold">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ActId" />
+    <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="CreateAt" />
+    <input type="hidden" asp-for="RecordStatus" />
+
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold" 
+            id="PageIndicator" data-page="Akt" data-indicator="Akta bağlı qızılın detallarını düzənləyirsiniz">
+                Qızılı düzənlə
+            </p>
+        </div>
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="GoldTypeId" class="f-s-14 f-w-500">Qızılın növü</label>
+                    <select asp-for="GoldTypeId" class="form-control"  
+                    asp-items="(IEnumerable<SelectListItem>)@ViewData["GoldTypes"]"></select>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="HallmarkId" class="f-s-14 f-w-500">Əyyar</label>
+                    <select asp-for="HallmarkId" class="form-control"
+                asp-items="(IEnumerable<SelectListItem>)@ViewData["Hallmarks"]"></select>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="ItemsCount" class="f-s-14 f-w-500">Sayı</label>
+                    <input asp-for="ItemsCount" type="text" id="ItemsCount" required 
+                    oninvalid="this.setCustomValidity('Sayını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="OneGramLikvidPrice" class="f-s-14 f-w-500">Məmulatın 1 qramının likvid qiyməti</label>
+                    <input asp-for="OneGramLikvidPrice" type="text" id="OneGramLikvidPrice" required 
+                    oninvalid="this.setCustomValidity('Məmulatın 1 qramının likvid qiymətini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="OneGramStorePrice" class="f-s-14 f-w-500">Məmulatın 1 qramının bazar qiyməti</label>
+                    <input asp-for="OneGramStorePrice" type="text" id="OneGramStorePrice" required 
+                    oninvalid="this.setCustomValidity('Məmulatın 1 qramının bazar qiymətini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalWeight" class="f-s-14 f-w-500">Ümumi çəki</label>
+                    <input asp-for="TotalWeight" type="text" id="TotalWeight" required 
+                    oninvalid="this.setCustomValidity('Ümumi çəkini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+            </div>
+        </div>
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="JewelWeight" class="f-s-14 f-w-500">Daş çəki</label>
+                    <input asp-for="JewelWeight" type="text" id="JewelWeight" required 
+                    oninvalid="this.setCustomValidity('Daş çəkisini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="NetWeight" class="f-s-14 f-w-500">Xalis çəki</label>
+                    <input asp-for="NetWeight" type="text" id="NetWeight" required 
+                    oninvalid="this.setCustomValidity('Xalis çəkisini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="LikvidPrice" class="f-s-14 f-w-500">Məmulatın likvid qiyməti</label>
+                    <input asp-for="LikvidPrice" type="text" id="LikvidPrice" required 
+                    oninvalid="this.setCustomValidity('Məmulatın likvid qiymətini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MarketPrice" class="f-s-14 f-w-500">Məmulatın bazar qiyməti</label>
+                    <input asp-for="MarketPrice" type="text" id="MarketPrice" required 
+                    oninvalid="this.setCustomValidity('Məmulatın bazar qiymətini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+            </div>
+        </div>
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-holder-with-label d-f">
+                <label asp-for="Description" class="f-s-14 f-w-500">Qeyd</label>
+                <textarea rows="5" asp-for="Description"></textarea>
+            </div>
+        </div>
+        
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-50"></div>
+        <!--Empty space div ends here-->
+
+        <div class="button-holder-inside-modal-form d-f">
+            <a asp-action="Index" class="red-submit-button-inside-form t-d-n">Ləğv et</a>
+            <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+        </div>
+    </div>
+</form>
+
+<!--Empty space div starts here-->
+<div class="empty-space-div-50"></div>
+<!--Empty space div ends here-->

@@ -1,0 +1,94 @@
+﻿@model Lombard.Domain.Entities.FamilyMember
+
+@{
+    int i = (int)ViewData["newCount"];
+}
+<div class="main-form-holder-inside-page-cont d-f">
+    <div class="form-part-inside-form-holder d-f">
+        <div class="input-row-inside-form-part d-g">
+            <div class="input-holder-with-label d-f">
+                <label asp-for="RelationTypeId" class="f-s-14 f-w-500">Qohumluq</label>
+                <select asp-for="RelationTypeId" class="form-control" 
+                asp-items="(IEnumerable<SelectListItem>)@ViewData["RelationTypes"]" 
+                    name="RelationType_@ViewData["newCount"]" required>
+                <option selected disabled>Seçin</option>    
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="form-part-inside-form-holder d-f">
+        <div class="label-row-inside-form-part d-f">
+            <p class="f-s-18 f-w-bold">Şəxsi məlumatlar</p>
+        </div>
+        <div class="input-row-inside-form-part d-g">
+            <div class="input-holder-with-label d-f">
+                <label asp-for="Fullname" class="f-s-14 f-w-500">Ad Soyad Ata adı</label>
+                <input asp-for="Fullname" name="Fullname_@ViewData["newCount"]"
+                required oninvalid="this.setCustomValidity('Adını yazın')"
+                oninput="this.setCustomValidity('')"/>
+            </div>
+         
+            <div class="input-holder-with-label d-f">
+                <label asp-for="BirthDate" class="f-s-14 f-w-500">Doğum tarixi</label>
+                <input asp-for="BirthDate" name="BirthDate_@ViewData["newCount"]" type="date"/>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label asp-for="BirthPlace" class="f-s-14 f-w-500">Doğulduğu yer</label>
+                <input asp-for="BirthPlace" name="BirthPlace_@ViewData["newCount"]"
+                oninvalid="this.setCustomValidity('Doğum ünvanını yazın')"
+                oninput="this.setCustomValidity('')" />
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label asp-for="WorkPlace" class="f-s-14 f-w-500">İşlədiyi yer</label>
+                <input asp-for="WorkPlace" name="WorkPlace_@ViewData["newCount"]"
+                oninvalid="this.setCustomValidity('İşlədiyi yeri yazın')" 
+                oninput="this.setCustomValidity('')" />
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label asp-for="WorkPosition" class="f-s-14 f-w-500">Vəzifə</label>
+                <input asp-for="WorkPosition" name="WorkPosition_@ViewData["newCount"]"
+                oninvalid="this.setCustomValidity('İşlədiyi yeri yazın')" 
+                oninput="this.setCustomValidity('')" />
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label asp-for="Salary" class="f-s-14 f-w-500">Maaş</label>
+                <input asp-for="Salary" name="Salary_@ViewData["newCount"]"
+                oninvalid="this.setCustomValidity('İşlədiyi yeri yazın')" 
+                oninput="this.setCustomValidity('')" />
+            </div>
+        </div>
+    </div>
+    <div class="form-part-inside-form-holder d-f">
+        <div class="label-row-inside-form-part d-f">
+            <p class="f-s-18 f-w-bold">Əlaqə məlumatları</p>
+        </div>
+        <div class="input-row-inside-form-part d-g">
+            <div class="input-holder-with-label d-f">
+                <label asp-for="MobileNumber" class="f-s-14 f-w-500">Mobil telefonu</label>
+                <input asp-for="MobileNumber" name="MobileNumber_@ViewData["newCount"]"
+                required oninvalid="this.setCustomValidity('Mobil telefonunu yazın')"
+                oninput="this.setCustomValidity('')"/>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label asp-for="MobileAdditional" class="f-s-14 f-w-500">Əlavə telefon</label>
+                <input asp-for="MobileAdditional" name="MobileAdditional_@ViewData["newCount"]"/>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label asp-for="Email" class="f-s-14 f-w-500">Email</label>
+                <input asp-for="Email" name="Email_@ViewData["newCount"]"/>
+            </div>
+        </div>
+    </div>
+
+    <!--Empty space div starts here-->
+    <div class="empty-space-div-30"></div>
+    <!--Empty space div ends here-->
+
+    <div class="button-holder-inside-modal-form d-f">
+        <a class="red-submit-button-inside-form t-d-n" onclick="RemoveThisAccount(this)">Sil</a>
+    </div>
+    <hr style="all: unset;width: 100%;border-bottom: 2px dashed gray;">
+</div>
+
+
+

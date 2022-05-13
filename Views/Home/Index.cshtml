@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Cards holder starts here -->
+<div class="main-cards-holder-inside-page-cont d-g">
+
+    <a class="t-d-n" href="/IndividualDebtor">
+        <div class="single-card-holder-inside d-f">
+            <div class="main-card-div-inside-holder light-green-card d-f">
+                <p class="f-s-24 f-w-bold">Fiziki şəxslər </p>
+                <p class="f-s-42 f-w-bold">@ViewData["IndividualDebtorCount"]</p>
+                <p class="f-s-14 f-w-500">Quantity</p>
+            </div>
+        </div>
+    </a>
+
+    <a class="t-d-n" href="/LegalDebtor">
+        <div class="single-card-holder-inside d-f">
+            <div class="main-card-div-inside-holder dark-purple-card d-f">
+                <p class="f-s-24 f-w-bold">Hüquqi şəxslər </p>
+                <p class="f-s-42 f-w-bold">@ViewData["LegalDebtorCount"]</p>
+                <p class="f-s-14 f-w-500">Quantity</p>
+            </div>
+        </div>
+    </a>
+
+</div>
+<!-- Cards holder ends here -->

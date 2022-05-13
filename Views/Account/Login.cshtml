@@ -1,0 +1,41 @@
+﻿@model Lombard.Domain.ViewModels.LoginVm
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<form asp-action="Login">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        
+        <div class="form-part-inside-form-holder d-f">
+          
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Username" class="f-s-14 f-w-500">Username</label>
+                    <input asp-for="Username" type="text" id="Username" 
+                    oninvalid="this.setCustomValidity('Username yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Password" class="f-s-14 f-w-500">Password</label>
+                    <input asp-for="Password" type="text" id="Password" required 
+                    oninvalid="this.setCustomValidity('Password yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+               
+            </div>
+        </div>
+
+        
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-50"></div>
+        <!--Empty space div ends here-->
+
+        <div class="button-holder-inside-modal-form d-f">
+            
+            <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+        </div>
+    </div>
+</form>

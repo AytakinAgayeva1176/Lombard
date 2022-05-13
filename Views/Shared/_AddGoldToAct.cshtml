@@ -1,0 +1,113 @@
+﻿@model Lombard.Domain.Entities.Gold
+
+@{
+    int g = (int)ViewData["newCount"];
+}
+
+<tr class="table-row-inside-table">
+    <td class="background-gray-th-inside-table table-row-count"></td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <select asp-for="GoldTypeId" asp-items="(IEnumerable<SelectListItem>)@ViewData["GoldTypes"]" name="GoldTypeId_@ViewData["newCount"]">
+                <option selected disabled>Seçin</option>
+            </select>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <select asp-for="HallmarkId" asp-items="(IEnumerable<SelectListItem>)@ViewData["HallMarks"]" 
+            onchange="HallmarkChange(this)" name="HallmarkId_@ViewData["newCount"]">
+                <option selected disabled>Seçin</option>
+            </select>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="OneGramLikvidPrice" class="form-control one_gram_likvid_price_input" name="OneGramLikvidPrice_@ViewData["newCount"]"
+            readonly/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="OneGramStorePrice" class="form-control one_gram_market_price_input" name="OneGramStorePrice_@ViewData["newCount"]"
+            readonly/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="ItemsCount" class="form-control gold_count_input" name="ItemsCount_@ViewData["newCount"]"
+            required oninvalid="this.setCustomValidity('Sayını yazın')" type="text"
+            oninput="this.setCustomValidity('')" onchange="CalculateTotalValue(this)"/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="TotalWeight" class="total_weight_input" name="TotalWeight_@ViewData["newCount"]"
+            required oninvalid="this.setCustomValidity('Ümumi çəkisini yazın')" type="text"
+            oninput="this.setCustomValidity('')" onchange="CalculateTotalValue(this) ; CalculateNetWeight(this)"/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="JewelWeight" class="jewel_weight_input" name="JewelWeight_@ViewData["newCount"]"
+            required oninvalid="this.setCustomValidity('Daş çəkisini yazın')" type="text"
+            oninput="this.setCustomValidity('')" onchange="CalculateTotalValue(this) ; CalculateNetWeight(this)"/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="NetWeight" class="net_weight_input" name="NetWeight_@ViewData["newCount"]"
+            required readonly/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="LikvidPrice" class="likvid_price_input" name="LikvidPrice_@ViewData["newCount"]"
+            readonly/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="MarketPrice" class="market_price_input" name="MarketPrice_@ViewData["newCount"]"
+            readonly/>
+        </div>
+    </td>
+    <td>
+        <div class="input-holder-with-label d-f">
+            <input asp-for="Description" class="form-control" name="Description_@ViewData["newCount"]"/>
+        </div>
+    </td>
+    <td>
+        <a onclick="RemoveThisAccount(this); CheckGoldTableUpdates()" class="elm-with-tooltip" data-tooltip-on-right="Silmək üçün klikləyin">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.25 6H17.25V4.125C17.25 3.29766 16.5773 2.625 15.75 2.625H8.25C7.42266 2.625 6.75 3.29766 6.75 4.125V6H3.75C3.33516 6 3 6.33516 3 6.75V7.5C3 7.60313 3.08437 7.6875 3.1875 7.6875H4.60312L5.18203 19.9453C5.21953 20.7445 5.88047 21.375 6.67969 21.375H17.3203C18.1219 21.375 18.7805 20.7469 18.818 19.9453L19.3969 7.6875H20.8125C20.9156 7.6875 21 7.60313 21 7.5V6.75C21 6.33516 20.6648 6 20.25 6ZM15.5625 6H8.4375V4.3125H15.5625V6Z" fill="#3B72FF"/>
+            </svg>
+        </a>                                        
+    </td>
+</tr>
+
+
+<script>
+    function HallmarkChange(hallmark_select) {
+        var gold_tr = hallmark_select.closest(".table-row-inside-table");
+        var likvid_input = gold_tr.querySelector('#OneGramLikvidPrice');
+        var market_input = gold_tr.querySelector('#OneGramStorePrice');
+
+        console.clear();
+
+        $.ajax({
+          url: '/Act/GetHallmarkDetails/?hallmarkId=' + hallmark_select.value,
+          type: 'GET',
+          dataType: 'json', 
+          //data: { id: $(this).val() }, 
+          success: function (result) {
+              console.log(result);
+              var likvid_price = result.likvidPriceOfOneGram;
+              var market_price = result.marketPriceOfOneGram;
+
+              likvid_input.value = likvid_price
+              market_input.value = market_price
+          }
+        });
+    }
+</script>

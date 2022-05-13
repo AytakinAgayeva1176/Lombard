@@ -1,0 +1,42 @@
+﻿@model Lombard.Domain.Entities.BankAccount
+
+@{
+    int i = (int)ViewData["newCount"];
+}
+<div class="main-form-holder-inside-page-cont d-f">
+    <div class="form-part-inside-form-holder d-f">
+        <div class="input-row-inside-form-part d-g">
+            <div class="input-holder-with-label d-f">
+                <label asp-for="Code" class="f-s-14 f-w-500">Kod</label>
+                <input asp-for="Code" class="form-control" name="Code_@ViewData["newCount"]"
+                       oninvalid="this.setCustomValidity('Kodu yazın')"
+                       oninput="this.setCustomValidity('')" />
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label asp-for="AccountNumber" class="f-s-14 f-w-500">Hesab nömrəsi</label>
+                <input asp-for="AccountNumber" class="form-control" name="AccountNumber_@ViewData["newCount"]"
+                       required oninvalid="this.setCustomValidity('Kodu yazın')"
+                       oninput="this.setCustomValidity('')" />
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label asp-for="ExpireDate" class="f-s-14 f-w-500">Etibarlılıq müddəti</label>
+                <input asp-for="ExpireDate" value="" class="form-control" name="ExpireDate_@ViewData["newCount"]"
+                       type="date" oninvalid="this.setCustomValidity('Kodu yazın')"
+                       oninput="this.setCustomValidity('')" />
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label asp-for="BankId" class="f-s-14 f-w-500">Bankın adı</label>
+                <select asp-for="BankId" class="form-control" asp-items="(IEnumerable<SelectListItem>)@ViewData["Banks"]"
+                        name="BankId_@ViewData["newCount"]">
+                    <option selected disabled>Seçin</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-holder-inside-modal-form d-f">
+        <a class="red-submit-button-inside-form t-d-n" onclick="RemoveThisAccount(this)">Sil</a>
+    </div>
+    <hr style="all: unset;width: 100%;border-bottom: 2px dashed gray;">
+</div>
+

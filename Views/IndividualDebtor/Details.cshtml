@@ -1,0 +1,939 @@
+﻿@model Lombard.Domain.ViewModels.IndividualDebtorWithALLInfo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<!-- Form holder starts here -->individualDebtorWithALLInfo
+<div class="main-form-holder-inside-page-cont d-f">
+    <div class="label-holder-inside-form-holder d-f">
+        <p class="f-s-24 f-w-bold" 
+        id="PageIndicator" data-page="Fiziki borcalan" data-indicator="Detallar səhifəsinə baxırsınız">
+            Fiziki Borcalan
+        </p>
+    </div>
+    <div class="form-part-inside-form-holder d-f">
+        <div class="label-row-inside-form-part d-f">
+            <p class="f-s-18 f-w-bold">Şəxsi məlumatlar</p>
+        </div>
+        <div class="input-row-inside-form-part d-g">
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Ad</label>
+                <input type="text" value="@Html.DisplayFor(model => model.Name)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput2" class="f-s-14 f-w-500">Soyad</label>
+                <input type="text" value="@Html.DisplayFor(model => model.Surname)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput3" class="f-s-14 f-w-500">Ata adı</label>
+                <input type="text" value="@Html.DisplayFor(model => model.Patronymic)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput4" class="f-s-14 f-w-500">Doğum tarixi</label>
+                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(model => model.BirthDate)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput5" class="f-s-14 f-w-500">Doğulduğu yer</label>
+                <input type="text" value="@Html.DisplayFor(model => model.BirthPlace)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput6" class="f-s-14 f-w-500">Faktiki yaşayış ünvanı</label>
+                <input type="text" value="@Html.DisplayFor(model => model.CurrentLivingAddress)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput6" class="f-s-14 f-w-500">Qeydiyyat ünvanı</label>
+                <input type="text" value="@Html.DisplayFor(model => model.RegisteredAddress)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput6" class="f-s-14 f-w-500">Email</label>
+                <input type="text" value="@Html.DisplayFor(model => model.Email)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput6" class="f-s-14 f-w-500">Cinsi</label>
+                <input type="text" value="@Html.DisplayFor(model => model.Gender)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput6" class="f-s-14 f-w-500">Ailə vəziyyəti</label>
+                <input type="text" value="@Html.DisplayFor(model => model.MarialStatuses)" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="form-part-inside-form-holder d-f">
+        <div class="label-row-inside-form-part d-f">
+            <p class="f-s-18 f-w-bold">Şəxsiyyət vəsiqəsi məlumatları</p>
+        </div>
+        <div class="input-row-inside-form-part d-g">
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Şəxsiyyət vəsiqəsi FİN kodu</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IDFincode)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput2" class="f-s-14 f-w-500">Şəxsiyyət vəsiqəsi seriya nömrəsi</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IDSerialNumber)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput3" class="f-s-14 f-w-500">Vəsiqəni verən orqan</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IDOrganizationName)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput4" class="f-s-14 f-w-500">Vəsiqənin verilmə tarixi </label>
+                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(model => model.IDGiveDate)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput5" class="f-s-14 f-w-500">Vəsiqənin etbarlılıq müddəti</label>
+                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(model => model.IDExpireDate)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput6" class="f-s-14 f-w-500">Vətəndaşlıq</label>
+                <input type="text" value="@Html.DisplayFor(model => model.Citizenship)" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="form-part-inside-form-holder d-f">
+        <div class="label-row-inside-form-part d-f">
+            <p class="f-s-18 f-w-bold">Əlaqə məlumatları</p>
+        </div>
+        <div class="input-row-inside-form-part d-g">
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Mobil telefonu</label>
+                <input type="text" value="@Html.DisplayFor(model => model.MobileNumber)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput2" class="f-s-14 f-w-500">Ev telefonu</label>
+                <input type="text" value="@Html.DisplayFor(model => model.Phone)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput3" class="f-s-14 f-w-500">Əlavə telefon</label>
+                <input type="text" value="@Html.DisplayFor(model => model.PhoneAdditional)" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="button-holder-inside-form-holder d-f f-center">
+        <a asp-action="Edit" asp-route-id="@Model.Id" asp-route-returnUrl="/IndividualDebtor/Details/@Model.Id" class="green-button d-f t-d-n g-10 align-center">
+            Dəyiş
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="stroke-color-change-green" d="M13 11L21.2 2.80005" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="stroke-color-change-green" d="M22 6.8V2H17.2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="stroke-color-change-green" d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </div>
+</div>
+<!-- Form holder ends here -->
+
+
+
+
+<!-- Table holder starts here -->
+<div class="main-table-holder-inside-page-cont d-f">
+    <div class="label-holder-inside-table-holder label-holder-with-add-svg d-f">
+        <p class="f-s-24 f-w-bold">Ailə üzvləri</p>
+
+        <div class="elm-with-tooltip add-button-svg-holder" data-tooltip-on-right="Yeni ailə üzvü əlavə etmək üçün klikləyin">
+            <a asp-action="AddFamilyMember" asp-route-Id="@Model.Id"  asp-route-returnUrl="/IndividualDebtor/Details/@Model.Id">
+                <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="68" height="68" rx="34" fill="#E3EBFF"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M34 23C27.925 23 23 27.925 23 34C23 40.075 27.925 45 34 45C40.075 45 45 40.075 45 34C45 27.925 40.075 23 34 23ZM35 38C35 38.2652 34.8946 38.5196 34.7071 38.7071C34.5196 38.8946 34.2652 39 34 39C33.7348 39 33.4804 38.8946 33.2929 38.7071C33.1054 38.5196 33 38.2652 33 38V35H30C29.7348 35 29.4804 34.8946 29.2929 34.7071C29.1054 34.5196 29 34.2652 29 34C29 33.7348 29.1054 33.4804 29.2929 33.2929C29.4804 33.1054 29.7348 33 30 33H33V30C33 29.7348 33.1054 29.4804 33.2929 29.2929C33.4804 29.1054 33.7348 29 34 29C34.2652 29 34.5196 29.1054 34.7071 29.2929C34.8946 29.4804 35 29.7348 35 30V33H38C38.2652 33 38.5196 33.1054 38.7071 33.2929C38.8946 33.4804 39 33.7348 39 34C39 34.2652 38.8946 34.5196 38.7071 34.7071C38.5196 34.8946 38.2652 35 38 35H35V38Z" fill="#3B72FF"/>
+                </svg>     
+            </a>
+        </div>
+    </div>
+    
+    <!--Empty space div starts here-->
+    <div class="empty-space-div-20"></div>
+    <!--Empty space div ends here-->
+
+    <div class="table-inside-table-holder">
+        <table>
+            <thead>
+                <tr class="table-row-inside-table">
+                    <th class="background-gray-th-inside-table">№</th>
+                    <th>
+                        <div class="d-f">
+                            Ad, Soyad, Ata adı
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Doğum tarixi
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Maaş
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Əlaqə nömrəsi
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Email
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Dəyiş</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Detallara bax</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Sil</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.FamilyMembers) {
+                    <tr class="table-row-inside-table">
+                        <td class="background-gray-th-inside-table table-row-count"></td>
+                        <td>@Html.DisplayFor(modelItem => item.Fullname) </td>
+                        <td>@Html.DisplayFor(modelItem => item.BirthDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Salary)</td>
+                        <td>@Html.DisplayFor(modelItem => item.MobileNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                        <td>
+                            <a asp-action="EditFamilyMember"  asp-route-returnUrl="/IndividualDebtor/Details/@Model.Id" asp-route-id="@item.Id" class="elm-with-tooltip" data-tooltip="Dəyişmək üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.03984 17.6251C6.08672 17.6251 6.13359 17.6204 6.18047 17.6134L10.1227 16.922C10.1695 16.9126 10.2141 16.8915 10.2469 16.8564L20.182 6.92122C20.2038 6.89953 20.221 6.87378 20.2328 6.84542C20.2445 6.81707 20.2506 6.78668 20.2506 6.75598C20.2506 6.72529 20.2445 6.69489 20.2328 6.66654C20.221 6.63819 20.2038 6.61243 20.182 6.59075L16.2867 2.69309C16.2422 2.64856 16.1836 2.62512 16.1203 2.62512C16.057 2.62512 15.9984 2.64856 15.9539 2.69309L6.01875 12.6282C5.98359 12.6634 5.9625 12.7056 5.95312 12.7525L5.26172 16.6947C5.23892 16.8202 5.24707 16.9494 5.28545 17.0711C5.32384 17.1928 5.39132 17.3033 5.48203 17.3931C5.63672 17.5431 5.83125 17.6251 6.03984 17.6251ZM7.61953 13.5376L16.1203 5.03918L17.8383 6.75715L9.3375 15.2556L7.25391 15.6236L7.61953 13.5376ZM20.625 19.5939H3.375C2.96016 19.5939 2.625 19.929 2.625 20.3439V21.1876C2.625 21.2907 2.70937 21.3751 2.8125 21.3751H21.1875C21.2906 21.3751 21.375 21.2907 21.375 21.1876V20.3439C21.375 19.929 21.0398 19.5939 20.625 19.5939Z" fill="#3B72FF"/>
+                                </svg>
+                            </a>                                        
+                        </td>
+                        <td>
+                            <a onclick="ToggleModal(this)" data-modal="modal-for-family-details-@item.Id" class="elm-with-tooltip" data-tooltip-on-right="Detallara baxmaq üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 3.00012C10.22 3.00012 8.47992 3.52796 6.99987 4.5169C5.51983 5.50583 4.36628 6.91144 3.68509 8.55597C3.0039 10.2005 2.82567 12.0101 3.17294 13.7559C3.5202 15.5018 4.37737 17.1054 5.63604 18.3641C6.89472 19.6228 8.49836 20.4799 10.2442 20.8272C11.99 21.1745 13.7996 20.9962 15.4442 20.315C17.0887 19.6339 18.4943 18.4803 19.4832 17.0003C20.4722 15.5202 21 13.7802 21 12.0001C20.9974 9.61397 20.0484 7.32628 18.3611 5.63901C16.6738 3.95174 14.3862 3.0027 12 3.00012ZM12 19.5001C10.5166 19.5001 9.0666 19.0603 7.83323 18.2361C6.59986 17.412 5.63857 16.2407 5.07091 14.8702C4.50325 13.4998 4.35473 11.9918 4.64411 10.5369C4.9335 9.08209 5.64781 7.74572 6.6967 6.69682C7.7456 5.64793 9.08197 4.93362 10.5368 4.64423C11.9917 4.35484 13.4997 4.50337 14.8701 5.07103C16.2406 5.63868 17.4119 6.59998 18.236 7.83335C19.0601 9.06671 19.5 10.5168 19.5 12.0001C19.4978 13.9886 18.7069 15.895 17.3009 17.301C15.8948 18.7071 13.9885 19.4979 12 19.5001ZM7.50001 11.2501C7.35167 11.2501 7.20666 11.2941 7.08333 11.3765C6.95999 11.4589 6.86386 11.5761 6.8071 11.7131C6.75033 11.8502 6.73548 12.001 6.76442 12.1464C6.79335 12.2919 6.86479 12.4256 6.96968 12.5305C7.07456 12.6353 7.2082 12.7068 7.35369 12.7357C7.49917 12.7647 7.64997 12.7498 7.78702 12.693C7.92406 12.6363 8.0412 12.5401 8.12361 12.4168C8.20602 12.2935 8.25001 12.1485 8.25001 12.0001C8.25001 11.8012 8.17099 11.6104 8.03033 11.4698C7.88968 11.3291 7.69892 11.2501 7.50001 11.2501ZM10.5 11.2501C10.3517 11.2501 10.2067 11.2941 10.0833 11.3765C9.95999 11.4589 9.86386 11.5761 9.8071 11.7131C9.75033 11.8502 9.73548 12.001 9.76442 12.1464C9.79336 12.2919 9.86479 12.4256 9.96968 12.5305C10.0746 12.6353 10.2082 12.7068 10.3537 12.7357C10.4992 12.7647 10.65 12.7498 10.787 12.693C10.9241 12.6363 11.0412 12.5401 11.1236 12.4168C11.206 12.2935 11.25 12.1485 11.25 12.0001C11.25 11.8012 11.171 11.6104 11.0303 11.4698C10.8897 11.3291 10.6989 11.2501 10.5 11.2501ZM13.5 11.2501C13.3517 11.2501 13.2067 11.2941 13.0833 11.3765C12.96 11.4589 12.8639 11.5761 12.8071 11.7131C12.7503 11.8502 12.7355 12.001 12.7644 12.1464C12.7934 12.2919 12.8648 12.4256 12.9697 12.5305C13.0746 12.6353 13.2082 12.7068 13.3537 12.7357C13.4992 12.7647 13.65 12.7498 13.787 12.693C13.9241 12.6363 14.0412 12.5401 14.1236 12.4168C14.206 12.2935 14.25 12.1485 14.25 12.0001C14.25 11.8012 14.171 11.6104 14.0303 11.4698C13.8897 11.3291 13.6989 11.2501 13.5 11.2501ZM16.5 11.2501C16.3517 11.2501 16.2067 11.2941 16.0833 11.3765C15.96 11.4589 15.8639 11.5761 15.8071 11.7131C15.7503 11.8502 15.7355 12.001 15.7644 12.1464C15.7934 12.2919 15.8648 12.4256 15.9697 12.5305C16.0746 12.6353 16.2082 12.7068 16.3537 12.7357C16.4992 12.7647 16.65 12.7498 16.787 12.693C16.9241 12.6363 17.0412 12.5401 17.1236 12.4168C17.206 12.2935 17.25 12.1485 17.25 12.0001C17.25 11.8012 17.171 11.6104 17.0303 11.4698C16.8897 11.3291 16.6989 11.2501 16.5 11.2501Z" fill="#3B72FF"/>
+                                </svg>
+                            </a>
+                            
+                            <!-- details modal starts here -->
+                            <div class="modal details-modal modal-for-family-details-@item.Id">
+                                <div class="modal-header d-f">
+                                    <div class="modal-close-button-div elm-with-tooltip" onclick="ToggleModal(this)" data-modal="modal-for-family-details-@item.Id" 
+                                    data-tooltip="Modalı bağlamaq üçün klikləyin">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.9 2H9.10001C8.42001 2 7.46 2.4 6.98 2.88L2.88 6.98001C2.4 7.46001 2 8.42001 2 9.10001V14.9C2 15.58 2.4 16.54 2.88 17.02L6.98 21.12C7.46 21.6 8.42001 22 9.10001 22H14.9C15.58 22 16.54 21.6 17.02 21.12L21.12 17.02C21.6 16.54 22 15.58 22 14.9V9.10001C22 8.42001 21.6 7.46001 21.12 6.98001L17.02 2.88C16.54 2.4 15.58 2 14.9 2Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.5 15.5L15.5 8.5" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M15.5 15.5L8.5 8.5" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>                                
+                                    </div>
+                                </div>
+                                <div class="modal-body d-f">
+                                    <div class="label-holder-inside-modal d-f f-center">
+                                        <p class="f-s-24 f-w-bold">Ailə üzvlərinin detalları</p>
+                                    </div>
+
+                                    <div class="form-holder-inside-modal d-f">
+                                        <div class="form-row-inside-modal d-f">
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Qohumluğu</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.RelationType)" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-row-inside-modal d-f">
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Ad Soyad Ata adı</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.Fullname)" readonly>
+                                            </div> 
+                                        </div>
+                                        <div class="form-row-inside-modal d-f">
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Doğum tarixi</label>
+                                                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(modelItem => item.BirthDate)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f align-center">
+                                                <label class="f-s-14 f-w-500">Doğulduğu yer</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.BirthPlace)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f align-center">
+                                                <label class="f-s-14 f-w-500">İşlədiyi yer</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.WorkPlace)" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-row-inside-modal d-f">
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Vəzifə</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.WorkPosition)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f align-center">
+                                                <label class="f-s-14 f-w-500">Maaş</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.Salary)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f align-center">
+                                                <label class="f-s-14 f-w-500">Email</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.Email)" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-row-inside-modal d-f">
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Mobil telefonu</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.MobileNumber)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f align-center">
+                                                <label class="f-s-14 f-w-500">Əlavə telefon</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.MobileAdditional)" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- details modal ends here -->
+                        </td>
+                        <td>
+                            <a asp-action="DeleteFamilyMember" asp-route-id="@item.Id" class="elm-with-tooltip" data-tooltip-on-right="Silmək üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.25 6H17.25V4.125C17.25 3.29766 16.5773 2.625 15.75 2.625H8.25C7.42266 2.625 6.75 3.29766 6.75 4.125V6H3.75C3.33516 6 3 6.33516 3 6.75V7.5C3 7.60313 3.08437 7.6875 3.1875 7.6875H4.60312L5.18203 19.9453C5.21953 20.7445 5.88047 21.375 6.67969 21.375H17.3203C18.1219 21.375 18.7805 20.7469 18.818 19.9453L19.3969 7.6875H20.8125C20.9156 7.6875 21 7.60313 21 7.5V6.75C21 6.33516 20.6648 6 20.25 6ZM15.5625 6H8.4375V4.3125H15.5625V6Z" fill="#3B72FF"/>
+                                </svg>
+                            </a>                                        
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Table holder ends here -->
+
+
+
+<!--Empty space div starts here-->
+<div class="empty-space-div-50"></div>
+<!--Empty space div ends here-->
+
+
+
+
+<!-- Table holder starts here -->
+<div class="main-table-holder-inside-page-cont d-f">
+    <div class="label-holder-inside-table-holder label-holder-with-add-svg d-f">
+        <p class="f-s-24 f-w-bold">Bank Hesabları</p>
+
+        <div class="elm-with-tooltip add-button-svg-holder" data-tooltip-on-right="Yeni bank hesabı əlavə etmək üçün klikləyin">
+            <a asp-action="CreateBankAccount" asp-route-Id="@Model.Id" asp-route-returnUrl="/IndividualDebtor/Details/@Model.Id">
+                <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="68" height="68" rx="34" fill="#E3EBFF"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M34 23C27.925 23 23 27.925 23 34C23 40.075 27.925 45 34 45C40.075 45 45 40.075 45 34C45 27.925 40.075 23 34 23ZM35 38C35 38.2652 34.8946 38.5196 34.7071 38.7071C34.5196 38.8946 34.2652 39 34 39C33.7348 39 33.4804 38.8946 33.2929 38.7071C33.1054 38.5196 33 38.2652 33 38V35H30C29.7348 35 29.4804 34.8946 29.2929 34.7071C29.1054 34.5196 29 34.2652 29 34C29 33.7348 29.1054 33.4804 29.2929 33.2929C29.4804 33.1054 29.7348 33 30 33H33V30C33 29.7348 33.1054 29.4804 33.2929 29.2929C33.4804 29.1054 33.7348 29 34 29C34.2652 29 34.5196 29.1054 34.7071 29.2929C34.8946 29.4804 35 29.7348 35 30V33H38C38.2652 33 38.5196 33.1054 38.7071 33.2929C38.8946 33.4804 39 33.7348 39 34C39 34.2652 38.8946 34.5196 38.7071 34.7071C38.5196 34.8946 38.2652 35 38 35H35V38Z" fill="#3B72FF"/>
+                </svg>     
+            </a>
+        </div>
+    </div>
+
+    <!--Empty space div starts here-->
+    <div class="empty-space-div-20"></div>
+    <!--Empty space div ends here-->
+
+    <div class="table-inside-table-holder">
+        <table>
+            <thead>
+                <tr class="table-row-inside-table">
+                    <th class="background-gray-th-inside-table">№</th>
+                    <th>
+                        <div class="d-f">
+                            Bank adı
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Hesab nömrəsi
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            kod
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                           Etibarlılıq müddəti
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Əsas
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Dəyiş</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Detallara bax</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Sil</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                            </svg> 
+                        </div>                                 
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.BankAccounts) {
+                    <tr class="table-row-inside-table">
+                        <td class="background-gray-th-inside-table table-row-count"></td>
+                        <td>@Html.DisplayFor(modelItem => item.Bank.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.AccountNumber)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Code)</td>
+                        <td class="date_input_for_details">@Html.DisplayFor(modelItem => item.ExpireDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IsMainAccount)</td>
+                        <td>
+                            <a asp-action="EditBankAccount"  asp-route-returnUrl="/IndividualDebtor/Details/@Model.Id" asp-route-id="@item.Id" class="elm-with-tooltip" data-tooltip="Dəyişmək üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.03984 17.6251C6.08672 17.6251 6.13359 17.6204 6.18047 17.6134L10.1227 16.922C10.1695 16.9126 10.2141 16.8915 10.2469 16.8564L20.182 6.92122C20.2038 6.89953 20.221 6.87378 20.2328 6.84542C20.2445 6.81707 20.2506 6.78668 20.2506 6.75598C20.2506 6.72529 20.2445 6.69489 20.2328 6.66654C20.221 6.63819 20.2038 6.61243 20.182 6.59075L16.2867 2.69309C16.2422 2.64856 16.1836 2.62512 16.1203 2.62512C16.057 2.62512 15.9984 2.64856 15.9539 2.69309L6.01875 12.6282C5.98359 12.6634 5.9625 12.7056 5.95312 12.7525L5.26172 16.6947C5.23892 16.8202 5.24707 16.9494 5.28545 17.0711C5.32384 17.1928 5.39132 17.3033 5.48203 17.3931C5.63672 17.5431 5.83125 17.6251 6.03984 17.6251ZM7.61953 13.5376L16.1203 5.03918L17.8383 6.75715L9.3375 15.2556L7.25391 15.6236L7.61953 13.5376ZM20.625 19.5939H3.375C2.96016 19.5939 2.625 19.929 2.625 20.3439V21.1876C2.625 21.2907 2.70937 21.3751 2.8125 21.3751H21.1875C21.2906 21.3751 21.375 21.2907 21.375 21.1876V20.3439C21.375 19.929 21.0398 19.5939 20.625 19.5939Z" fill="#3B72FF"/>
+                                </svg>
+                            </a>                                        
+                        </td>
+                        <td>
+                            <a onclick="ToggleModal(this)" data-modal="modal-for-bank-details-@item.Id" class="elm-with-tooltip" data-tooltip-on-right="Detallara baxmaq üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 3.00012C10.22 3.00012 8.47992 3.52796 6.99987 4.5169C5.51983 5.50583 4.36628 6.91144 3.68509 8.55597C3.0039 10.2005 2.82567 12.0101 3.17294 13.7559C3.5202 15.5018 4.37737 17.1054 5.63604 18.3641C6.89472 19.6228 8.49836 20.4799 10.2442 20.8272C11.99 21.1745 13.7996 20.9962 15.4442 20.315C17.0887 19.6339 18.4943 18.4803 19.4832 17.0003C20.4722 15.5202 21 13.7802 21 12.0001C20.9974 9.61397 20.0484 7.32628 18.3611 5.63901C16.6738 3.95174 14.3862 3.0027 12 3.00012ZM12 19.5001C10.5166 19.5001 9.0666 19.0603 7.83323 18.2361C6.59986 17.412 5.63857 16.2407 5.07091 14.8702C4.50325 13.4998 4.35473 11.9918 4.64411 10.5369C4.9335 9.08209 5.64781 7.74572 6.6967 6.69682C7.7456 5.64793 9.08197 4.93362 10.5368 4.64423C11.9917 4.35484 13.4997 4.50337 14.8701 5.07103C16.2406 5.63868 17.4119 6.59998 18.236 7.83335C19.0601 9.06671 19.5 10.5168 19.5 12.0001C19.4978 13.9886 18.7069 15.895 17.3009 17.301C15.8948 18.7071 13.9885 19.4979 12 19.5001ZM7.50001 11.2501C7.35167 11.2501 7.20666 11.2941 7.08333 11.3765C6.95999 11.4589 6.86386 11.5761 6.8071 11.7131C6.75033 11.8502 6.73548 12.001 6.76442 12.1464C6.79335 12.2919 6.86479 12.4256 6.96968 12.5305C7.07456 12.6353 7.2082 12.7068 7.35369 12.7357C7.49917 12.7647 7.64997 12.7498 7.78702 12.693C7.92406 12.6363 8.0412 12.5401 8.12361 12.4168C8.20602 12.2935 8.25001 12.1485 8.25001 12.0001C8.25001 11.8012 8.17099 11.6104 8.03033 11.4698C7.88968 11.3291 7.69892 11.2501 7.50001 11.2501ZM10.5 11.2501C10.3517 11.2501 10.2067 11.2941 10.0833 11.3765C9.95999 11.4589 9.86386 11.5761 9.8071 11.7131C9.75033 11.8502 9.73548 12.001 9.76442 12.1464C9.79336 12.2919 9.86479 12.4256 9.96968 12.5305C10.0746 12.6353 10.2082 12.7068 10.3537 12.7357C10.4992 12.7647 10.65 12.7498 10.787 12.693C10.9241 12.6363 11.0412 12.5401 11.1236 12.4168C11.206 12.2935 11.25 12.1485 11.25 12.0001C11.25 11.8012 11.171 11.6104 11.0303 11.4698C10.8897 11.3291 10.6989 11.2501 10.5 11.2501ZM13.5 11.2501C13.3517 11.2501 13.2067 11.2941 13.0833 11.3765C12.96 11.4589 12.8639 11.5761 12.8071 11.7131C12.7503 11.8502 12.7355 12.001 12.7644 12.1464C12.7934 12.2919 12.8648 12.4256 12.9697 12.5305C13.0746 12.6353 13.2082 12.7068 13.3537 12.7357C13.4992 12.7647 13.65 12.7498 13.787 12.693C13.9241 12.6363 14.0412 12.5401 14.1236 12.4168C14.206 12.2935 14.25 12.1485 14.25 12.0001C14.25 11.8012 14.171 11.6104 14.0303 11.4698C13.8897 11.3291 13.6989 11.2501 13.5 11.2501ZM16.5 11.2501C16.3517 11.2501 16.2067 11.2941 16.0833 11.3765C15.96 11.4589 15.8639 11.5761 15.8071 11.7131C15.7503 11.8502 15.7355 12.001 15.7644 12.1464C15.7934 12.2919 15.8648 12.4256 15.9697 12.5305C16.0746 12.6353 16.2082 12.7068 16.3537 12.7357C16.4992 12.7647 16.65 12.7498 16.787 12.693C16.9241 12.6363 17.0412 12.5401 17.1236 12.4168C17.206 12.2935 17.25 12.1485 17.25 12.0001C17.25 11.8012 17.171 11.6104 17.0303 11.4698C16.8897 11.3291 16.6989 11.2501 16.5 11.2501Z" fill="#3B72FF"/>
+                                </svg>
+                            </a>  
+                            
+                            <!-- details modal starts here -->
+                            <div class="modal details-modal modal-for-bank-details-@item.Id">
+                                <div class="modal-header d-f">
+                                    <div class="modal-close-button-div elm-with-tooltip" onclick="ToggleModal(this)" data-modal="modal-for-bank-details-@item.Id" 
+                                    data-tooltip="Modalı bağlamaq üçün klikləyin">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.9 2H9.10001C8.42001 2 7.46 2.4 6.98 2.88L2.88 6.98001C2.4 7.46001 2 8.42001 2 9.10001V14.9C2 15.58 2.4 16.54 2.88 17.02L6.98 21.12C7.46 21.6 8.42001 22 9.10001 22H14.9C15.58 22 16.54 21.6 17.02 21.12L21.12 17.02C21.6 16.54 22 15.58 22 14.9V9.10001C22 8.42001 21.6 7.46001 21.12 6.98001L17.02 2.88C16.54 2.4 15.58 2 14.9 2Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.5 15.5L15.5 8.5" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M15.5 15.5L8.5 8.5" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>                                
+                                    </div>
+                                </div>
+                                <div class="modal-body d-f">
+                                    <div class="label-holder-inside-modal d-f f-center">
+                                        <p class="f-s-24 f-w-bold">Bank Hesabının detalları</p>
+                                    </div>
+
+                                    <div class="form-holder-inside-modal d-f">
+                                        <div class="form-row-inside-modal d-f">
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Bankın adı</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.Bank.Name)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Hesab nömrəsi</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.AccountNumber)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Etibarlılıq müddəti</label>
+                                                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(modelItem => item.ExpireDate)" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-row-inside-modal d-f">
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Kod</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.Code)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f align-center">
+                                                <label class="f-s-14 f-w-500">Əsas</label>
+                                                @Html.DisplayFor(modelItem => item.IsMainAccount)
+                                            </div>
+                                            @*<div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Etibarlılıq müddəti</label>
+                                                <input type="text" value="@Html.DisplayFor(modelItem => item.ExpireDate)" readonly>
+                                            </div>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- details modal ends here -->
+
+
+                        </td>
+                        <td>
+                            <a asp-action="DeleteBankAccount" asp-route-id="@item.Id" class="elm-with-tooltip" data-tooltip-on-right="Silmək üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.25 6H17.25V4.125C17.25 3.29766 16.5773 2.625 15.75 2.625H8.25C7.42266 2.625 6.75 3.29766 6.75 4.125V6H3.75C3.33516 6 3 6.33516 3 6.75V7.5C3 7.60313 3.08437 7.6875 3.1875 7.6875H4.60312L5.18203 19.9453C5.21953 20.7445 5.88047 21.375 6.67969 21.375H17.3203C18.1219 21.375 18.7805 20.7469 18.818 19.9453L19.3969 7.6875H20.8125C20.9156 7.6875 21 7.60313 21 7.5V6.75C21 6.33516 20.6648 6 20.25 6ZM15.5625 6H8.4375V4.3125H15.5625V6Z" fill="#3B72FF"/>
+                                </svg>
+                            </a>                                        
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Table holder ends here -->
+
+
+
+<!--Empty space div starts here-->
+<div class="empty-space-div-40"></div>
+<!--Empty space div ends here-->
+
+
+<!-- Table holder starts here -->
+<div class="main-table-holder-inside-page-cont d-f">
+    <div class="label-holder-inside-form-holder label-holder-with-add-svg d-f">
+        <p class="f-s-24 f-w-bold">İş yerləri</p>
+
+        <div class="elm-with-tooltip add-button-svg-holder" data-tooltip-on-right="Yeni iş yeri əlavə etmək üçün klikləyin">
+            <a asp-action="AddJob" asp-route-Id="@Model.Id" asp-route-returnUrl="/IndividualDebtor/Details/@Model.Id">
+                <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="68" height="68" rx="34" fill="#E3EBFF" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M34 23C27.925 23 23 27.925 23 34C23 40.075 27.925 45 34 45C40.075 45 45 40.075 45 34C45 27.925 40.075 23 34 23ZM35 38C35 38.2652 34.8946 38.5196 34.7071 38.7071C34.5196 38.8946 34.2652 39 34 39C33.7348 39 33.4804 38.8946 33.2929 38.7071C33.1054 38.5196 33 38.2652 33 38V35H30C29.7348 35 29.4804 34.8946 29.2929 34.7071C29.1054 34.5196 29 34.2652 29 34C29 33.7348 29.1054 33.4804 29.2929 33.2929C29.4804 33.1054 29.7348 33 30 33H33V30C33 29.7348 33.1054 29.4804 33.2929 29.2929C33.4804 29.1054 33.7348 29 34 29C34.2652 29 34.5196 29.1054 34.7071 29.2929C34.8946 29.4804 35 29.7348 35 30V33H38C38.2652 33 38.5196 33.1054 38.7071 33.2929C38.8946 33.4804 39 33.7348 39 34C39 34.2652 38.8946 34.5196 38.7071 34.7071C38.5196 34.8946 38.2652 35 38 35H35V38Z" fill="#3B72FF" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!--Empty space div starts here-->
+    <div class="empty-space-div-20"></div>
+    <!--Empty space div ends here-->
+
+    <div class="table-inside-table-holder">
+        <table>
+            <thead>
+                <tr class="table-row-inside-table">
+                    <th class="background-gray-th-inside-table">№</th>
+                    <th>
+                        <div class="d-f">
+                            Şirkət adı
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Ünvan
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Aylıq gəlir
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Təcrübə
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            VOEN
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Pozisiya
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Əsas
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Dəyiş</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Detallara bax</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Sil</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.Jobs)
+                {
+                    <tr class="table-row-inside-table">
+                        <td class="background-gray-th-inside-table table-row-count"></td>
+                        <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Adress)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Salary)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Experience)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Position)</td>
+                        <td>@Html.DisplayFor(modelItem => item.VOEN)</td>
+                        <td>@Html.DisplayFor(modelItem => item.IsCurrent)</td>
+                        <td>
+                            <a asp-action="EditJob" asp-controller="IndividualDebtor" asp-route-id="@item.Id"  asp-route-returnUrl="/IndividualDebtor/Details/@Model.Id" class="elm-with-tooltip" data-tooltip="Dəyişmək üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.03984 17.6251C6.08672 17.6251 6.13359 17.6204 6.18047 17.6134L10.1227 16.922C10.1695 16.9126 10.2141 16.8915 10.2469 16.8564L20.182 6.92122C20.2038 6.89953 20.221 6.87378 20.2328 6.84542C20.2445 6.81707 20.2506 6.78668 20.2506 6.75598C20.2506 6.72529 20.2445 6.69489 20.2328 6.66654C20.221 6.63819 20.2038 6.61243 20.182 6.59075L16.2867 2.69309C16.2422 2.64856 16.1836 2.62512 16.1203 2.62512C16.057 2.62512 15.9984 2.64856 15.9539 2.69309L6.01875 12.6282C5.98359 12.6634 5.9625 12.7056 5.95312 12.7525L5.26172 16.6947C5.23892 16.8202 5.24707 16.9494 5.28545 17.0711C5.32384 17.1928 5.39132 17.3033 5.48203 17.3931C5.63672 17.5431 5.83125 17.6251 6.03984 17.6251ZM7.61953 13.5376L16.1203 5.03918L17.8383 6.75715L9.3375 15.2556L7.25391 15.6236L7.61953 13.5376ZM20.625 19.5939H3.375C2.96016 19.5939 2.625 19.929 2.625 20.3439V21.1876C2.625 21.2907 2.70937 21.3751 2.8125 21.3751H21.1875C21.2906 21.3751 21.375 21.2907 21.375 21.1876V20.3439C21.375 19.929 21.0398 19.5939 20.625 19.5939Z" fill="#3B72FF" />
+                                </svg>
+                            </a>
+                        </td>
+                        <td>
+                            <a onclick="ToggleModal(this)" data-modal="modal-for-job-details-@item.Id" class="elm-with-tooltip" data-tooltip-on-right="Detallara baxmaq üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 3.00012C10.22 3.00012 8.47992 3.52796 6.99987 4.5169C5.51983 5.50583 4.36628 6.91144 3.68509 8.55597C3.0039 10.2005 2.82567 12.0101 3.17294 13.7559C3.5202 15.5018 4.37737 17.1054 5.63604 18.3641C6.89472 19.6228 8.49836 20.4799 10.2442 20.8272C11.99 21.1745 13.7996 20.9962 15.4442 20.315C17.0887 19.6339 18.4943 18.4803 19.4832 17.0003C20.4722 15.5202 21 13.7802 21 12.0001C20.9974 9.61397 20.0484 7.32628 18.3611 5.63901C16.6738 3.95174 14.3862 3.0027 12 3.00012ZM12 19.5001C10.5166 19.5001 9.0666 19.0603 7.83323 18.2361C6.59986 17.412 5.63857 16.2407 5.07091 14.8702C4.50325 13.4998 4.35473 11.9918 4.64411 10.5369C4.9335 9.08209 5.64781 7.74572 6.6967 6.69682C7.7456 5.64793 9.08197 4.93362 10.5368 4.64423C11.9917 4.35484 13.4997 4.50337 14.8701 5.07103C16.2406 5.63868 17.4119 6.59998 18.236 7.83335C19.0601 9.06671 19.5 10.5168 19.5 12.0001C19.4978 13.9886 18.7069 15.895 17.3009 17.301C15.8948 18.7071 13.9885 19.4979 12 19.5001ZM7.50001 11.2501C7.35167 11.2501 7.20666 11.2941 7.08333 11.3765C6.95999 11.4589 6.86386 11.5761 6.8071 11.7131C6.75033 11.8502 6.73548 12.001 6.76442 12.1464C6.79335 12.2919 6.86479 12.4256 6.96968 12.5305C7.07456 12.6353 7.2082 12.7068 7.35369 12.7357C7.49917 12.7647 7.64997 12.7498 7.78702 12.693C7.92406 12.6363 8.0412 12.5401 8.12361 12.4168C8.20602 12.2935 8.25001 12.1485 8.25001 12.0001C8.25001 11.8012 8.17099 11.6104 8.03033 11.4698C7.88968 11.3291 7.69892 11.2501 7.50001 11.2501ZM10.5 11.2501C10.3517 11.2501 10.2067 11.2941 10.0833 11.3765C9.95999 11.4589 9.86386 11.5761 9.8071 11.7131C9.75033 11.8502 9.73548 12.001 9.76442 12.1464C9.79336 12.2919 9.86479 12.4256 9.96968 12.5305C10.0746 12.6353 10.2082 12.7068 10.3537 12.7357C10.4992 12.7647 10.65 12.7498 10.787 12.693C10.9241 12.6363 11.0412 12.5401 11.1236 12.4168C11.206 12.2935 11.25 12.1485 11.25 12.0001C11.25 11.8012 11.171 11.6104 11.0303 11.4698C10.8897 11.3291 10.6989 11.2501 10.5 11.2501ZM13.5 11.2501C13.3517 11.2501 13.2067 11.2941 13.0833 11.3765C12.96 11.4589 12.8639 11.5761 12.8071 11.7131C12.7503 11.8502 12.7355 12.001 12.7644 12.1464C12.7934 12.2919 12.8648 12.4256 12.9697 12.5305C13.0746 12.6353 13.2082 12.7068 13.3537 12.7357C13.4992 12.7647 13.65 12.7498 13.787 12.693C13.9241 12.6363 14.0412 12.5401 14.1236 12.4168C14.206 12.2935 14.25 12.1485 14.25 12.0001C14.25 11.8012 14.171 11.6104 14.0303 11.4698C13.8897 11.3291 13.6989 11.2501 13.5 11.2501ZM16.5 11.2501C16.3517 11.2501 16.2067 11.2941 16.0833 11.3765C15.96 11.4589 15.8639 11.5761 15.8071 11.7131C15.7503 11.8502 15.7355 12.001 15.7644 12.1464C15.7934 12.2919 15.8648 12.4256 15.9697 12.5305C16.0746 12.6353 16.2082 12.7068 16.3537 12.7357C16.4992 12.7647 16.65 12.7498 16.787 12.693C16.9241 12.6363 17.0412 12.5401 17.1236 12.4168C17.206 12.2935 17.25 12.1485 17.25 12.0001C17.25 11.8012 17.171 11.6104 17.0303 11.4698C16.8897 11.3291 16.6989 11.2501 16.5 11.2501Z" fill="#3B72FF" />
+                                </svg>
+                            </a>
+                            <!-- details modal starts here -->
+                            <div class="modal details-modal modal-for-job-details-@item.Id">
+                                <div class="modal-header d-f">
+                                    <div class="modal-close-button-div elm-with-tooltip" onclick="ToggleModal(this)" data-modal="modal-for-job-details-@item.Id" 
+                                    data-tooltip="Modalı bağlamaq üçün klikləyin">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14.9 2H9.10001C8.42001 2 7.46 2.4 6.98 2.88L2.88 6.98001C2.4 7.46001 2 8.42001 2 9.10001V14.9C2 15.58 2.4 16.54 2.88 17.02L6.98 21.12C7.46 21.6 8.42001 22 9.10001 22H14.9C15.58 22 16.54 21.6 17.02 21.12L21.12 17.02C21.6 16.54 22 15.58 22 14.9V9.10001C22 8.42001 21.6 7.46001 21.12 6.98001L17.02 2.88C16.54 2.4 15.58 2 14.9 2Z" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.5 15.5L15.5 8.5" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M15.5 15.5L8.5 8.5" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>                                
+                                    </div>
+                                </div>
+                                <div class="modal-body d-f">
+                                    <div class="label-holder-inside-modal d-f f-center">
+                                        <p class="f-s-24 f-w-bold">İş yerinin detalları</p>
+                                    </div>
+                                    <div class="form-holder-inside-modal d-f">
+                                        <div class="form-row-inside-modal d-f">
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Şirkət adı</label>
+                                                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(modelItem => item.CompanyName)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Ünvan</label>
+                                                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(modelItem => item.Adress)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Aylıq gəlir</label>
+                                                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(modelItem => item.Salary)" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-row-inside-modal d-f">
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Təcrübə</label>
+                                                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(modelItem => item.Experience)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">VOEN</label>
+                                                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(modelItem => item.VOEN)" readonly>
+                                            </div>
+                                            <div class="input-holder-with-label d-f">
+                                                <label class="f-s-14 f-w-500">Pozisiya</label>
+                                                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(modelItem => item.Position)" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-row-inside-modal d-f">
+                                            <div class="input-holder-with-label d-f align-center">
+                                                <label class="f-s-14 f-w-500">Əsas</label>
+                                                @Html.DisplayFor(modelItem => item.IsCurrent)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- details modal ends here -->
+                        </td>
+                        <td>
+                            <a asp-action="DeleteJob" asp-controller="IndividualDebtor" asp-route-id="@item.Id" class="elm-with-tooltip" data-tooltip-on-right="Silmək üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.25 6H17.25V4.125C17.25 3.29766 16.5773 2.625 15.75 2.625H8.25C7.42266 2.625 6.75 3.29766 6.75 4.125V6H3.75C3.33516 6 3 6.33516 3 6.75V7.5C3 7.60313 3.08437 7.6875 3.1875 7.6875H4.60312L5.18203 19.9453C5.21953 20.7445 5.88047 21.375 6.67969 21.375H17.3203C18.1219 21.375 18.7805 20.7469 18.818 19.9453L19.3969 7.6875H20.8125C20.9156 7.6875 21 7.60313 21 7.5V6.75C21 6.33516 20.6648 6 20.25 6ZM15.5625 6H8.4375V4.3125H15.5625V6Z" fill="#3B72FF" />
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Table holder ends here -->
+
+<!--Empty space div starts here-->
+<div class="empty-space-div-30"></div>
+<!--Empty space div ends here-->
+
+<!-- Table holder starts here -->
+<div class="main-table-holder-inside-page-cont d-f">
+    <div class="label-holder-inside-form-holder label-holder-with-add-svg d-f">
+        <p class="f-s-24 f-w-bold">Əsas Aktlar</p>
+
+        <div class="elm-with-tooltip add-button-svg-holder" data-tooltip-on-right="Yeni akt əlavə etmək üçün klikləyin">
+            <a asp-action="Create" asp-controller="Act" asp-route-DebtorId="P+@Model.Id" asp-route-returnUrl="/IndividualDebtor/Details/@Model.Id">
+                <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="68" height="68" rx="34" fill="#E3EBFF" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M34 23C27.925 23 23 27.925 23 34C23 40.075 27.925 45 34 45C40.075 45 45 40.075 45 34C45 27.925 40.075 23 34 23ZM35 38C35 38.2652 34.8946 38.5196 34.7071 38.7071C34.5196 38.8946 34.2652 39 34 39C33.7348 39 33.4804 38.8946 33.2929 38.7071C33.1054 38.5196 33 38.2652 33 38V35H30C29.7348 35 29.4804 34.8946 29.2929 34.7071C29.1054 34.5196 29 34.2652 29 34C29 33.7348 29.1054 33.4804 29.2929 33.2929C29.4804 33.1054 29.7348 33 30 33H33V30C33 29.7348 33.1054 29.4804 33.2929 29.2929C33.4804 29.1054 33.7348 29 34 29C34.2652 29 34.5196 29.1054 34.7071 29.2929C34.8946 29.4804 35 29.7348 35 30V33H38C38.2652 33 38.5196 33.1054 38.7071 33.2929C38.8946 33.4804 39 33.7348 39 34C39 34.2652 38.8946 34.5196 38.7071 34.7071C38.5196 34.8946 38.2652 35 38 35H35V38Z" fill="#3B72FF" />
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!--Empty space div starts here-->
+    <div class="empty-space-div-20"></div>
+    <!--Empty space div ends here-->
+
+    <div class="table-inside-table-holder">
+        <table>
+            <thead>
+                <tr class="table-row-inside-table">
+                    <th class="background-gray-th-inside-table">№</th>
+                    <th>
+                        <div class="d-f">
+                            Aktın növü
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Aktın adı
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Ümumi çəki
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Daş çəki
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Xalis çəki
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Məmulatın likvid qiyməti
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            Məmulatın Bazar qiyməti
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Dəyiş</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Detallara bax</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="d-f">
+                            <p>Sil</p>
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9" />
+                            </svg>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.Acts)
+                {
+                    <tr class="table-row-inside-table">
+
+                        <td class="background-gray-th-inside-table table-row-count"></td>
+                        <td>@Html.DisplayFor(modelItem => item.ActType)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalGoldWeight)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalJewelsWeight)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalGoldNetWeight)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalGoldLikvidPrice)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalGoldMarketPrice)</td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="Act" asp-route-id="@item.Id"  asp-route-returnUrl="/IndividualDebtor/Details/@Model.Id" class="elm-with-tooltip" data-tooltip="Dəyişmək üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.03984 17.6251C6.08672 17.6251 6.13359 17.6204 6.18047 17.6134L10.1227 16.922C10.1695 16.9126 10.2141 16.8915 10.2469 16.8564L20.182 6.92122C20.2038 6.89953 20.221 6.87378 20.2328 6.84542C20.2445 6.81707 20.2506 6.78668 20.2506 6.75598C20.2506 6.72529 20.2445 6.69489 20.2328 6.66654C20.221 6.63819 20.2038 6.61243 20.182 6.59075L16.2867 2.69309C16.2422 2.64856 16.1836 2.62512 16.1203 2.62512C16.057 2.62512 15.9984 2.64856 15.9539 2.69309L6.01875 12.6282C5.98359 12.6634 5.9625 12.7056 5.95312 12.7525L5.26172 16.6947C5.23892 16.8202 5.24707 16.9494 5.28545 17.0711C5.32384 17.1928 5.39132 17.3033 5.48203 17.3931C5.63672 17.5431 5.83125 17.6251 6.03984 17.6251ZM7.61953 13.5376L16.1203 5.03918L17.8383 6.75715L9.3375 15.2556L7.25391 15.6236L7.61953 13.5376ZM20.625 19.5939H3.375C2.96016 19.5939 2.625 19.929 2.625 20.3439V21.1876C2.625 21.2907 2.70937 21.3751 2.8125 21.3751H21.1875C21.2906 21.3751 21.375 21.2907 21.375 21.1876V20.3439C21.375 19.929 21.0398 19.5939 20.625 19.5939Z" fill="#3B72FF" />
+                                </svg>
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-controller="Act" asp-route-id="@item.Id"  class="elm-with-tooltip" data-tooltip-on-right="Detallara baxmaq üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 3.00012C10.22 3.00012 8.47992 3.52796 6.99987 4.5169C5.51983 5.50583 4.36628 6.91144 3.68509 8.55597C3.0039 10.2005 2.82567 12.0101 3.17294 13.7559C3.5202 15.5018 4.37737 17.1054 5.63604 18.3641C6.89472 19.6228 8.49836 20.4799 10.2442 20.8272C11.99 21.1745 13.7996 20.9962 15.4442 20.315C17.0887 19.6339 18.4943 18.4803 19.4832 17.0003C20.4722 15.5202 21 13.7802 21 12.0001C20.9974 9.61397 20.0484 7.32628 18.3611 5.63901C16.6738 3.95174 14.3862 3.0027 12 3.00012ZM12 19.5001C10.5166 19.5001 9.0666 19.0603 7.83323 18.2361C6.59986 17.412 5.63857 16.2407 5.07091 14.8702C4.50325 13.4998 4.35473 11.9918 4.64411 10.5369C4.9335 9.08209 5.64781 7.74572 6.6967 6.69682C7.7456 5.64793 9.08197 4.93362 10.5368 4.64423C11.9917 4.35484 13.4997 4.50337 14.8701 5.07103C16.2406 5.63868 17.4119 6.59998 18.236 7.83335C19.0601 9.06671 19.5 10.5168 19.5 12.0001C19.4978 13.9886 18.7069 15.895 17.3009 17.301C15.8948 18.7071 13.9885 19.4979 12 19.5001ZM7.50001 11.2501C7.35167 11.2501 7.20666 11.2941 7.08333 11.3765C6.95999 11.4589 6.86386 11.5761 6.8071 11.7131C6.75033 11.8502 6.73548 12.001 6.76442 12.1464C6.79335 12.2919 6.86479 12.4256 6.96968 12.5305C7.07456 12.6353 7.2082 12.7068 7.35369 12.7357C7.49917 12.7647 7.64997 12.7498 7.78702 12.693C7.92406 12.6363 8.0412 12.5401 8.12361 12.4168C8.20602 12.2935 8.25001 12.1485 8.25001 12.0001C8.25001 11.8012 8.17099 11.6104 8.03033 11.4698C7.88968 11.3291 7.69892 11.2501 7.50001 11.2501ZM10.5 11.2501C10.3517 11.2501 10.2067 11.2941 10.0833 11.3765C9.95999 11.4589 9.86386 11.5761 9.8071 11.7131C9.75033 11.8502 9.73548 12.001 9.76442 12.1464C9.79336 12.2919 9.86479 12.4256 9.96968 12.5305C10.0746 12.6353 10.2082 12.7068 10.3537 12.7357C10.4992 12.7647 10.65 12.7498 10.787 12.693C10.9241 12.6363 11.0412 12.5401 11.1236 12.4168C11.206 12.2935 11.25 12.1485 11.25 12.0001C11.25 11.8012 11.171 11.6104 11.0303 11.4698C10.8897 11.3291 10.6989 11.2501 10.5 11.2501ZM13.5 11.2501C13.3517 11.2501 13.2067 11.2941 13.0833 11.3765C12.96 11.4589 12.8639 11.5761 12.8071 11.7131C12.7503 11.8502 12.7355 12.001 12.7644 12.1464C12.7934 12.2919 12.8648 12.4256 12.9697 12.5305C13.0746 12.6353 13.2082 12.7068 13.3537 12.7357C13.4992 12.7647 13.65 12.7498 13.787 12.693C13.9241 12.6363 14.0412 12.5401 14.1236 12.4168C14.206 12.2935 14.25 12.1485 14.25 12.0001C14.25 11.8012 14.171 11.6104 14.0303 11.4698C13.8897 11.3291 13.6989 11.2501 13.5 11.2501ZM16.5 11.2501C16.3517 11.2501 16.2067 11.2941 16.0833 11.3765C15.96 11.4589 15.8639 11.5761 15.8071 11.7131C15.7503 11.8502 15.7355 12.001 15.7644 12.1464C15.7934 12.2919 15.8648 12.4256 15.9697 12.5305C16.0746 12.6353 16.2082 12.7068 16.3537 12.7357C16.4992 12.7647 16.65 12.7498 16.787 12.693C16.9241 12.6363 17.0412 12.5401 17.1236 12.4168C17.206 12.2935 17.25 12.1485 17.25 12.0001C17.25 11.8012 17.171 11.6104 17.0303 11.4698C16.8897 11.3291 16.6989 11.2501 16.5 11.2501Z" fill="#3B72FF" />
+                                </svg>
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-controller="Act" asp-route-id="@item.Id" class="elm-with-tooltip" data-tooltip-on-right="Silmək üçün klikləyin">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.25 6H17.25V4.125C17.25 3.29766 16.5773 2.625 15.75 2.625H8.25C7.42266 2.625 6.75 3.29766 6.75 4.125V6H3.75C3.33516 6 3 6.33516 3 6.75V7.5C3 7.60313 3.08437 7.6875 3.1875 7.6875H4.60312L5.18203 19.9453C5.21953 20.7445 5.88047 21.375 6.67969 21.375H17.3203C18.1219 21.375 18.7805 20.7469 18.818 19.9453L19.3969 7.6875H20.8125C20.9156 7.6875 21 7.60313 21 7.5V6.75C21 6.33516 20.6648 6 20.25 6ZM15.5625 6H8.4375V4.3125H15.5625V6Z" fill="#3B72FF" />
+                                </svg>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                  <tr class="table-row-inside-table">
+
+                        <td class="background-gray-th-inside-table table-row-count"></td>
+                        <td>Yekun</td>
+                        <td>@Html.DisplayFor(modelItem => modelItem.Act.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => modelItem.Act.TotalGoldWeight)</td>
+                        <td>@Html.DisplayFor(modelItem => modelItem.Act.TotalJewelsWeight)</td>
+                        <td>@Html.DisplayFor(modelItem => modelItem.Act.TotalGoldNetWeight)</td>
+                        <td>@Html.DisplayFor(modelItem => modelItem.Act.TotalGoldLikvidPrice)</td>
+                        <td>@Html.DisplayFor(modelItem => modelItem.Act.TotalGoldMarketPrice)</td>
+ 
+                    </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+<!-- Table holder ends here -->
+
+
+<!--Empty space div starts here-->
+<div class="empty-space-div-30"></div>
+<!--Empty space div ends here-->
+
+
+<div class="button-holder-holder d-f">
+    <a asp-action="Index" class="default-button t-d-n">Siyahıya geri dön</a>
+</div>
+

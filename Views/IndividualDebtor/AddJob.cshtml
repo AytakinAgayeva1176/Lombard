@@ -1,0 +1,77 @@
+﻿@model Lombard.Domain.Entities.Job
+
+@{
+    ViewData["Title"] = "AddJob";
+}
+
+<form asp-action="AddJob">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="form-part-inside-form-holder d-f">
+            <div class="label-row-inside-form-part d-f">
+                <p class="f-s-18 f-w-bold">Yeni iş yeri əlavə edin</p>
+            </div>
+            <div class="input-row-four-col-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="CompanyName" class="f-s-14 f-w-500">Şirkət adı</label>
+                    <input asp-for="CompanyName" name="CompanyName"
+                    required oninvalid="this.setCustomValidity('Şirkət adını yazın')"
+                    oninput="this.setCustomValidity('')"/>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Position" class="f-s-14 f-w-500">Vəzifə</label>
+                    <input asp-for="Position" name="Position"
+                    required oninvalid="this.setCustomValidity('Vəzifə adını yazın')"
+                    oninput="this.setCustomValidity('')"/>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Adress" class="f-s-14 f-w-500">Ünvan</label>
+                    <input asp-for="Adress" name="Adress" 
+                    oninvalid="this.setCustomValidity('Ünvanı yazın')"
+                    oninput="this.setCustomValidity('')"/>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Salary" class="f-s-14 f-w-500">Aylıq gəlir</label>
+                    <input asp-for="Salary" name="DebtorSalary"
+                    oninvalid="this.setCustomValidity('Aylıq gəliri yazın')"
+                    oninput="this.setCustomValidity('')" />
+                </div>
+            </div>
+        </div>
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Experience" class="f-s-14 f-w-500">Təcrübə</label>
+                    <input asp-for="Experience" name="Experience"
+                    oninvalid="this.setCustomValidity('Təcrübəni yazın')" 
+                    oninput="this.setCustomValidity('')" />
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="VOEN" class="f-s-14 f-w-500">VOEN</label>
+                    <input asp-for="VOEN" name="VOEN"
+                    oninvalid="this.setCustomValidity('VOEN i yazın')" 
+                    oninput="this.setCustomValidity('')" />
+                </div>
+                <div class="input-holder-with-label d-f align-center">
+                    <label asp-for="VOEN" class="f-s-14 f-w-500">Əsas</label>
+                    <input asp-for="IsCurrent" />
+                </div>
+            </div>
+        </div>
+ 
+
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-30"></div>
+        <!--Empty space div ends here-->
+    </div>
+
+    <div class="button-holder-inside-modal-form d-f">
+        <a asp-action="Cancel" class="red-submit-button-inside-form t-d-n">Ləğv et</a>
+        <button type="submit" value="Create" class="green-submit-button-inside-form">Təsdiqlə</button>
+    </div>
+
+    <!--Empty space div starts here-->
+    <div class="empty-space-div-30"></div>
+    <!--Empty space div ends here-->
+</form>
+

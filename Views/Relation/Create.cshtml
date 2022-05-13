@@ -1,0 +1,38 @@
+﻿@model Lombard.Domain.Entities.RelationType
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold"
+            id="PageIndicator" data-page="Qohumluq növü" data-indicator="Hal-hazırda yeni qohumluq növü yaradırsınız">
+                Qohumluq növü yarat
+            </p>
+        </div>
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Type" class="f-s-14 f-w-500">Qohumluq növü</label>
+                    <input asp-for="Type" type="text" id="Type" required 
+                    oninvalid="this.setCustomValidity('Qohumluq növünü yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+            </div>
+        </div>
+
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-30"></div>
+        <!--Empty space div ends here-->
+
+        <div class="button-holder-inside-modal-form d-f">
+            <a asp-action="Index" class="red-submit-button-inside-form t-d-n">Ləğv et</a>
+            <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+        </div>
+    </div>
+</form>
+

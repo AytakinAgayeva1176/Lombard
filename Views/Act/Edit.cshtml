@@ -1,0 +1,128 @@
+﻿@model Lombard.Domain.Entities.Act
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<form asp-action="Edit" enctype="multipart/form-data">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="RecordStatus" />
+    <input type="hidden" asp-for="CreateAt" />
+    <input type="hidden" asp-for="ParentId" />
+    <input type="hidden" asp-for="UserId" />
+    <input type="hidden" asp-for="Id" />
+
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold"
+               id="PageIndicator" data-page="Akt" data-indicator="Aktın detallarını düzənləyirsiniz">Aktı düzənlə</p>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            @if (Model.IndividualDebtorId != null)
+            {
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="IndividualDebtorId" class="f-s-14 f-w-500">Fiziki şəxs</label>
+                    <select asp-for="IndividualDebtorId" asp-items="(IEnumerable<SelectListItem>)@ViewData["PhysicalDebtors"]">
+                        <option selected disabled>Fiziki borcalanı seçin</option>
+                    </select>
+                </div>
+
+            }
+            else if (Model.LegalDebtorId != null)
+            {
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="LegalDebtorId" class="f-s-14 f-w-500">Hüquqi şəxs</label>
+                    <select asp-for="LegalDebtorId" asp-items="(IEnumerable<SelectListItem>)@ViewData["LegalDebtors"]">
+                        <option selected disabled>Hüquqi borcalanı seçin</option>
+                    </select>
+                </div>
+            }
+        </div>
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Name" class="f-s-14 f-w-500">Aktın adı</label>
+                    <input asp-for="Name" type="text" id="Name" required
+                           oninvalid="this.setCustomValidity('Aktın adını yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Date" class="f-s-14 f-w-500">Bağlanma tarixi</label>
+                    <input asp-for="Date" type="date" id="Date" required
+                           oninvalid="this.setCustomValidity('Bağlanma tarixini yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="ActType" class="f-s-14 f-w-500">Aktın növü</label>
+                    <select asp-for="ActType" class="form-control" asp-items="(IEnumerable<SelectListItem>)@ViewData["ActTypes"]" disabled></select>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldWeight" class="f-s-14 f-w-500">Ümumi çəki</label>
+                    <input asp-for="TotalGoldWeight" type="text" id="TotalGoldWeight" required
+                           oninvalid="this.setCustomValidity('Ümumi çəkini yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalJewelsWeight" class="f-s-14 f-w-500">Daş çəki</label>
+                    <input asp-for="TotalJewelsWeight" type="text" id="TotalJewelsWeight" required
+                           oninvalid="this.setCustomValidity('Daş çəkini yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldNetWeight" class="f-s-14 f-w-500">Xalis çəki</label>
+                    <input asp-for="TotalGoldNetWeight" type="text" id="TotalGoldNetWeight" required
+                           oninvalid="this.setCustomValidity('Xalis çəkini yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldLikvidPrice" class="f-s-14 f-w-500">Məmulatın likvid qiyməti</label>
+                    <input asp-for="TotalGoldLikvidPrice" type="text" id="TotalGoldLikvidPrice" required
+                           oninvalid="this.setCustomValidity('Məmulatın likvid qiymətini yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldMarketPrice" class="f-s-14 f-w-500">Məmulatın Bazar qiyməti</label>
+                    <input asp-for="TotalGoldMarketPrice" type="text" id="TotalGoldMarketPrice" required
+                           oninvalid="this.setCustomValidity('Məmulatın Bazar qiymətini yazın')"
+                           oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Image" class="f-s-14 f-w-500">Şəkil</label>
+                    <input asp-for="Image" name="Image" />
+                </div>
+            </div>
+        </div>
+
+
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-50"></div>
+        <!--Empty space div ends here-->
+
+        <div class="button-holder-inside-modal-form d-f">
+            <a asp-action="Cancel" class="red-submit-button-inside-form t-d-n" asp-route-returnUrl="@ViewData["returnUrl"]">Ləğv et</a>
+            <button type="submit" asp-route-returnUrl="@ViewData["returnUrl"]" class="green-submit-button-inside-form">Təsdiqlə</button>
+        </div>
+    </div>
+</form>
+
+<!--Empty space div starts here-->
+<div class="empty-space-div-50"></div>
+<!--Empty space div ends here-->
+
+
+<script>
+    $("#IndividualDebtorId").select2( {
+	    placeholder: "Fiziki borcalanı seçin",
+	    allowClear: false
+	});
+    $("#LegalDebtorId").select2( {
+	    placeholder: "Hüquqi borcalanı seçin",
+	    allowClear: false
+	});
+</script>

@@ -1,0 +1,81 @@
+﻿@model Lombard.Domain.Entities.Bank
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Bank</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Branch" class="control-label"></label>
+                <input asp-for="Branch" class="form-control" />
+                <span asp-validation-for="Branch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ForPrint" class="control-label"></label>
+                <input asp-for="ForPrint" class="form-control" />
+                <span asp-validation-for="ForPrint" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VOEN" class="control-label"></label>
+                <input asp-for="VOEN" class="form-control" />
+                <span asp-validation-for="VOEN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorrespondentAccount" class="control-label"></label>
+                <input asp-for="CorrespondentAccount" class="form-control" />
+                <span asp-validation-for="CorrespondentAccount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SWIFT" class="control-label"></label>
+                <input asp-for="SWIFT" class="form-control" />
+                <span asp-validation-for="SWIFT" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IBAN" class="control-label"></label>
+                <input asp-for="IBAN" class="form-control" />
+                <span asp-validation-for="IBAN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Code" class="control-label"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OtherDetails" class="control-label"></label>
+                <input asp-for="OtherDetails" class="form-control" />
+                <span asp-validation-for="OtherDetails" class="text-danger"></span>
+            </div>
+         
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

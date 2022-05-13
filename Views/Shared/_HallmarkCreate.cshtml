@@ -1,0 +1,33 @@
+﻿@model Lombard.Domain.Entities.Hallmark
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateHallmark">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-holder-inside-modal d-f">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TypeName" class="f-s-14 f-w-500">Əyyar</label>
+                    <input asp-for="TypeName" type="number" id="TypeName" required max="1000"
+                    oninvalid="this.setCustomValidity('Əyyarı yazın. Əyyar maksimum 3 rəqəmli ola bilər')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="LikvidPriceOfOneGram" class="f-s-14 f-w-500">Əyyarın 1 qramının likvid qiyməti</label>
+                    <input asp-for="LikvidPriceOfOneGram" type="number" id="LikvidPriceOfOneGram" required
+                    oninvalid="this.setCustomValidity('Əyyarın 1 qramının likvid qiymətini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MarketPriceOfOneGram" class="f-s-14 f-w-500">Əyyarın 1 qramının bazar qiyməti</label>
+                    <input asp-for="MarketPriceOfOneGram" type="number" id="MarketPriceOfOneGram" required
+                    oninvalid="this.setCustomValidity('Əyyarın 1 qramının bazar qiymətini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="button-holder-inside-modal-form d-f">
+                    <button type="button" class="red-submit-button-inside-form" onclick="ToggleModal(this)" data-modal="modal-for-hallmark">Ləğv et</button>
+                    <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

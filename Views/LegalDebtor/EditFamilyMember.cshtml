@@ -1,0 +1,101 @@
+﻿@model Lombard.Domain.Entities.FamilyMember
+
+@{
+    ViewData["Title"] = "EditFamilyMember";
+}
+
+
+<form asp-action="EditFamilyMember">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="LegalDebtorId"/>
+    <input type="hidden" asp-for="RecordStatus"/>
+    <input type="hidden" asp-for="CreateAt"/>
+    <input type="hidden" asp-for="UserId"/>
+    <input type="hidden" asp-for="Id"/>
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold">Ailə üzvləri</p>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="RelationType" class="f-s-14 f-w-500">Qohumluq</label>
+                    <select asp-for="RelationType" class="form-control" asp-items="(IEnumerable<SelectListItem>)@ViewData["RelationTypes"]"></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Fullname" class="f-s-14 f-w-500">Ad Soyad Ata adı</label>
+                    <input asp-for="Fullname" type="text" id="Fullname" required 
+                    oninvalid="this.setCustomValidity('Adı yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+              
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="BirthDate" class="f-s-14 f-w-500">Doğum tarixi</label>
+                    <input asp-for="BirthDate" type="date" id="BirthDate" required 
+                    oninvalid="this.setCustomValidity('Doğum tarixini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="BirthPlace" class="f-s-14 f-w-500">Doğulduğu yer</label>
+                    <input asp-for="BirthPlace" type="text" id="BirthPlace" required 
+                    oninvalid="this.setCustomValidity('Doğulduğu yeri yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="WorkPlace" class="f-s-14 f-w-500">İş yeri</label>
+                    <input asp-for="WorkPlace" type="text" id="WorkPlace" required 
+                    oninvalid="this.setCustomValidity('İş yerini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="WorkPosition" class="f-s-14 f-w-500">Vəzifə</label>
+                    <input asp-for="WorkPosition" type="text" id="WorkPosition" required 
+                    oninvalid="this.setCustomValidity('Vəzifəsini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Salary" class="f-s-14 f-w-500">Maaş</label>
+                    <input asp-for="Salary" type="text" id="Salary" required 
+                    oninvalid="this.setCustomValidity('Maaşını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MobileNumber" class="f-s-14 f-w-500">Mobil telefonu</label>
+                    <input asp-for="MobileNumber" type="tel" id="MobileNumber" required 
+                    oninvalid="this.setCustomValidity('Mobil telefonunu yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MobileAdditional" class="f-s-14 f-w-500">Əlavə telefon</label>
+                    <input asp-for="MobileAdditional" type="tel" id="MobileAdditional">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Email" class="f-s-14 f-w-500">Email</label>
+                    <input asp-for="Email" type="email" id="Email" required 
+                    oninvalid="this.setCustomValidity('Emailini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+            </div>
+        </div>
+        
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-50"></div>
+        <!--Empty space div ends here-->
+
+        <div class="button-holder-inside-modal-form d-f">
+             <a asp-action="Cancel" class="red-submit-button-inside-form t-d-n"
+               asp-route-returnUrl="@ViewData["returnUrl"]">Ləğv et</a>
+            <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+        </div>
+    </div>
+</form>
+
+

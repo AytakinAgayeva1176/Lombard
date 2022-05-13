@@ -1,0 +1,237 @@
+﻿@model Lombard.Domain.ViewModels.IndividualDetailsVM
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<!-- Form holder starts here -->
+<div class="main-form-holder-inside-page-cont d-f">
+    <div class="label-holder-inside-form-holder d-f">
+        <p class="f-s-24 f-w-bold"
+           id="PageIndicator" data-page="İndividual müqavilə" data-indicator="İndividual müqavilənin detallarına baxırsınız">İndividual müqavilənin detalları</p>
+    </div>
+
+    <div class="form-part-inside-form-holder d-f">
+        <!-- Table holder starts here -->
+        <div class="main-table-holder-inside-page-cont d-f">
+            <div class="label-holder-inside-table-holder d-f">
+                <p class="f-s-24 f-w-bold">Aktlar</p>
+            </div>
+            <div class="search-bar-holder-inside-table-holder">
+                <div class="search-bar-div-inside-table-holder">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M20.1666 8.7085C20.1666 12.5055 17.0885 15.5835 13.2916 15.5835C11.7043 15.5835 10.2426 15.0455 9.07888 14.142C9.03505 14.2348 8.97479 14.3217 8.8981 14.3983L3.3981 19.8983C3.04012 20.2563 2.45972 20.2563 2.10174 19.8983C1.74376 19.5404 1.74376 18.96 2.10174 18.602L7.60174 13.102C7.67843 13.0253 7.76533 12.965 7.85806 12.9212C6.95453 11.7575 6.41659 10.2958 6.41659 8.7085C6.41659 4.91154 9.49463 1.8335 13.2916 1.8335C17.0885 1.8335 20.1666 4.91154 20.1666 8.7085ZM18.3333 8.7085C18.3333 5.92406 16.076 3.66683 13.2916 3.66683C10.5071 3.66683 8.24992 5.92406 8.24992 8.7085C8.24992 11.4929 10.5071 13.7502 13.2916 13.7502C16.076 13.7502 18.3333 11.4929 18.3333 8.7085Z" fill="#C4C8D4"/>
+                    </svg>                            
+                    <input class="f-s-14" type="text" name="search_inside_table" id="search_inside_table" placeholder="Axtar">
+                </div>
+            </div>
+            <div class="table-inside-table-holder">
+                <table>
+                    <thead>
+                        <tr class="table-row-inside-table">
+                            <th class="background-gray-th-inside-table">№</th>
+                            <th onclick="sortTable(1)">
+                                <div class="d-f">
+                                    Aktın adı
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                    </svg> 
+                                </div>                                 
+                            </th>
+                            <th onclick="sortTable(2)">
+                                <div class="d-f">
+                                    Əşyaların sayı
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                    </svg> 
+                                </div>                                 
+                            </th>
+                            <th onclick="sortTable(3)">
+                                <div class="d-f">
+                                    Ümumi çəkisi
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                    </svg> 
+                                </div>                                 
+                            </th>
+                            <th onclick="sortTable(4)">
+                                <div class="d-f">
+                                    Xalis çəkisi
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                    </svg> 
+                                </div>                                 
+                            </th>
+                            <th onclick="sortTable(5)">
+                                <div class="d-f">
+                                    Məmulatın likvid qiyməti
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                    </svg> 
+                                </div>                                 
+                            </th>
+                            <th onclick="sortTable(6)">
+                                <div class="d-f">
+                                    Məmulatın bazar qiyməti
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                    </svg> 
+                                </div>                                 
+                            </th>
+                            <th>
+                                <div class="d-f">
+                                    <p>Detallara bax</p>
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.67085 4.83764C3.44305 5.06545 3.44305 5.43479 3.67085 5.6626C3.89866 5.89041 4.26801 5.89041 4.49581 5.6626L7 3.15841L9.50419 5.6626C9.73199 5.89041 10.1013 5.89041 10.3291 5.6626C10.557 5.4348 10.557 5.06545 10.3291 4.83764L7.41248 1.92098C7.30308 1.81158 7.15471 1.75012 7 1.75012C6.84529 1.75012 6.69692 1.81158 6.58752 1.92098L3.67085 4.83764Z" fill="#8992A9"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M10.3291 9.16256C10.557 8.93475 10.557 8.56541 10.3291 8.3376C10.1013 8.1098 9.73199 8.1098 9.50419 8.3376L7 10.8418L4.49581 8.3376C4.26801 8.1098 3.89866 8.1098 3.67085 8.3376C3.44305 8.56541 3.44305 8.93476 3.67085 9.16256L6.58752 12.0792C6.81533 12.307 7.18467 12.307 7.41248 12.0792L10.3291 9.16256Z" fill="#8992A9"/>
+                                    </svg> 
+                                </div>                                 
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Acts) {
+                            <tr class="table-row-inside-table">
+                                <td class="background-gray-th-inside-table table-row-count"></td>
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TotalGoldCount)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TotalGoldWeight)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TotalGoldNetWeight)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TotalGoldLikvidPrice)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TotalGoldMarketPrice)</td>
+                                <td>
+                                    <a asp-action="Details" asp-controller="Act" asp-route-id="@item.Id" asp-route-returnUrl="/Act/Details/@item.Id"  class="elm-with-tooltip" data-tooltip-on-right="Detallara baxmaq üçün klikləyin">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 3.00012C10.22 3.00012 8.47992 3.52796 6.99987 4.5169C5.51983 5.50583 4.36628 6.91144 3.68509 8.55597C3.0039 10.2005 2.82567 12.0101 3.17294 13.7559C3.5202 15.5018 4.37737 17.1054 5.63604 18.3641C6.89472 19.6228 8.49836 20.4799 10.2442 20.8272C11.99 21.1745 13.7996 20.9962 15.4442 20.315C17.0887 19.6339 18.4943 18.4803 19.4832 17.0003C20.4722 15.5202 21 13.7802 21 12.0001C20.9974 9.61397 20.0484 7.32628 18.3611 5.63901C16.6738 3.95174 14.3862 3.0027 12 3.00012ZM12 19.5001C10.5166 19.5001 9.0666 19.0603 7.83323 18.2361C6.59986 17.412 5.63857 16.2407 5.07091 14.8702C4.50325 13.4998 4.35473 11.9918 4.64411 10.5369C4.9335 9.08209 5.64781 7.74572 6.6967 6.69682C7.7456 5.64793 9.08197 4.93362 10.5368 4.64423C11.9917 4.35484 13.4997 4.50337 14.8701 5.07103C16.2406 5.63868 17.4119 6.59998 18.236 7.83335C19.0601 9.06671 19.5 10.5168 19.5 12.0001C19.4978 13.9886 18.7069 15.895 17.3009 17.301C15.8948 18.7071 13.9885 19.4979 12 19.5001ZM7.50001 11.2501C7.35167 11.2501 7.20666 11.2941 7.08333 11.3765C6.95999 11.4589 6.86386 11.5761 6.8071 11.7131C6.75033 11.8502 6.73548 12.001 6.76442 12.1464C6.79335 12.2919 6.86479 12.4256 6.96968 12.5305C7.07456 12.6353 7.2082 12.7068 7.35369 12.7357C7.49917 12.7647 7.64997 12.7498 7.78702 12.693C7.92406 12.6363 8.0412 12.5401 8.12361 12.4168C8.20602 12.2935 8.25001 12.1485 8.25001 12.0001C8.25001 11.8012 8.17099 11.6104 8.03033 11.4698C7.88968 11.3291 7.69892 11.2501 7.50001 11.2501ZM10.5 11.2501C10.3517 11.2501 10.2067 11.2941 10.0833 11.3765C9.95999 11.4589 9.86386 11.5761 9.8071 11.7131C9.75033 11.8502 9.73548 12.001 9.76442 12.1464C9.79336 12.2919 9.86479 12.4256 9.96968 12.5305C10.0746 12.6353 10.2082 12.7068 10.3537 12.7357C10.4992 12.7647 10.65 12.7498 10.787 12.693C10.9241 12.6363 11.0412 12.5401 11.1236 12.4168C11.206 12.2935 11.25 12.1485 11.25 12.0001C11.25 11.8012 11.171 11.6104 11.0303 11.4698C10.8897 11.3291 10.6989 11.2501 10.5 11.2501ZM13.5 11.2501C13.3517 11.2501 13.2067 11.2941 13.0833 11.3765C12.96 11.4589 12.8639 11.5761 12.8071 11.7131C12.7503 11.8502 12.7355 12.001 12.7644 12.1464C12.7934 12.2919 12.8648 12.4256 12.9697 12.5305C13.0746 12.6353 13.2082 12.7068 13.3537 12.7357C13.4992 12.7647 13.65 12.7498 13.787 12.693C13.9241 12.6363 14.0412 12.5401 14.1236 12.4168C14.206 12.2935 14.25 12.1485 14.25 12.0001C14.25 11.8012 14.171 11.6104 14.0303 11.4698C13.8897 11.3291 13.6989 11.2501 13.5 11.2501ZM16.5 11.2501C16.3517 11.2501 16.2067 11.2941 16.0833 11.3765C15.96 11.4589 15.8639 11.5761 15.8071 11.7131C15.7503 11.8502 15.7355 12.001 15.7644 12.1464C15.7934 12.2919 15.8648 12.4256 15.9697 12.5305C16.0746 12.6353 16.2082 12.7068 16.3537 12.7357C16.4992 12.7647 16.65 12.7498 16.787 12.693C16.9241 12.6363 17.0412 12.5401 17.1236 12.4168C17.206 12.2935 17.25 12.1485 17.25 12.0001C17.25 11.8012 17.171 11.6104 17.0303 11.4698C16.8897 11.3291 16.6989 11.2501 16.5 11.2501Z" fill="#3B72FF"/>
+                                        </svg>
+                                    </a>                                        
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Table holder ends here -->
+    </div>
+    <div class="form-part-inside-form-holder d-f">
+        <div class="label-row-inside-form-part d-f">
+            <p class="f-s-18 f-w-bold">Müştəri</p>
+        </div>
+        <div class="input-row-inside-form-part d-g">
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Adı, Soyadı , Ata adı</label>
+                @if (Model.IndividualContract.LegalDebtorId != null)
+                {
+                    <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.LegalDebtor.Name)" readonly>
+                }
+                else if (Model.IndividualContract.IndividualDebtorId != null)
+                {
+                    <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.IndividualDebtor.Name) @Html.DisplayFor(model => model.IndividualContract.IndividualDebtor.Surname) @Html.DisplayFor(model => model.IndividualContract.IndividualDebtor.Patronymic)" readonly>
+                }
+            </div>
+
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Hesab nömrəsi</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.AccountNumber)" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="form-part-inside-form-holder d-f">
+        <div class="label-row-inside-form-part d-f">
+            <p class="f-s-18 f-w-bold">Müqavilə məlumatları</p>
+        </div>
+        <div class="input-row-inside-form-part d-g">
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Müqavilənin nömrəsi </label>
+                <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.ContractNo)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Valyuta</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.Currency)" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="form-part-inside-form-holder d-f">
+        <div class="label-row-inside-form-part d-f">
+            <p class="f-s-18 f-w-bold">Kredit məlumatları</p>
+        </div>
+        <div class="input-row-inside-form-part d-g">
+
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Məhsul adı</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.Product.Name)" readonly>
+            </div>
+
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Verilmə tarixi</label>
+                <input class="date_input_for_details" type="text" value="@Html.DisplayFor(model => model.IndividualContract.GivingTime)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Müddət</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.Period)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Ödəniş tarixi</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.PaymentDate)" readonly>
+            </div>
+
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Güzəşt ayları</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.DiscountedMonths)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Komissiya</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.Comission)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Faiz dərəcəsi</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.Percentage)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">FIFD</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.FIFD)" readonly>
+            </div>
+            <div class="input-holder-with-label d-f">
+                <label for="customInput" class="f-s-14 f-w-500">Kreditin məbləği</label>
+                <input type="text" value="@Html.DisplayFor(model => model.IndividualContract.CreditAmount)" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="form-part-inside-form-holder d-f">
+        <div class="input-row-inside-form-part d-g">
+            <div class="input-holder-with-label d-f">
+                <label for="DebtorId" class="f-s-14 f-w-500">Zamin</label>
+                <a asp-action="GuarantorDetails" asp-route-id="@ViewData["guarantorId"]">
+                    <input type="text" value="@ViewData["Guarantor"]" readonly class="t-d-n crsr-pnter link-input">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-holder-inside-form-holder d-f f-center">
+        <a asp-action="Edit" asp-route-id="@Model.IndividualContract.Id" asp-route-returnUrl="/IndividualContract/Details/@Model.IndividualContract.Id" class="green-button d-f t-d-n g-10 align-center">
+            Dəyiş
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path class="stroke-color-change-green" d="M13 11L21.2 2.80005" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path class="stroke-color-change-green" d="M22 6.8V2H17.2" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path class="stroke-color-change-green" d="M11 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22H15C20 22 22 20 22 15V13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </a>
+    </div>
+</div>
+<!-- Form holder ends here -->
+<!--Empty space div starts here-->
+<div class="empty-space-div-40"></div>
+<!--Empty space div ends here-->
+
+
+<div class="button-holder-holder d-f">
+    <a asp-action="Index" class="default-button t-d-n">Siyahıya geri dön</a>
+</div>

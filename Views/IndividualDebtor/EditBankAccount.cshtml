@@ -1,0 +1,67 @@
+﻿@model Lombard.Domain.Entities.BankAccount
+
+@{
+    ViewData["Title"] = "EditBankAccount";
+}
+
+
+<form asp-action="EditBankAccount">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="IndividualDebtorId"/>
+    <input type="hidden" asp-for="RecordStatus"/>
+    <input type="hidden" asp-for="CreateAt"/>
+    <input type="hidden" asp-for="UserId"/>
+    <input type="hidden" asp-for="Id"/>
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold">Bank hesablarını düzənlə</p>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="label-row-inside-form-part d-f">
+                <p class="f-s-18 f-w-bold">Bank məlumatları</p>
+            </div>
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Code" class="f-s-14 f-w-500">Kod</label>
+                    <input asp-for="Code" type="text" id="Code" required 
+                    oninvalid="this.setCustomValidity('Kodu yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="AccountNumber" class="f-s-14 f-w-500">Hesab nömrəsi</label>
+                    <input asp-for="AccountNumber" type="text" id="AccountNumber" required 
+                    oninvalid="this.setCustomValidity('Hesab nömrəsini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="ExpireDate" class="f-s-14 f-w-500">Etibarlılıq müddəti</label>
+                    <input asp-for="ExpireDate" type="date" id="ExpireDate" required 
+                    oninvalid="this.setCustomValidity('Etibarlılıq müddətini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="BankId" class="f-s-14 f-w-500">Bank adı</label>
+                    <select asp-for="BankId" asp-items="(IEnumerable<SelectListItem>)@ViewData["Banks"]"></select>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="IsMainAccount" class="f-s-14 f-w-500">Əsas Hesab</label>
+                    <input asp-for="IsMainAccount" /> 
+                </div>
+            </div>
+        </div>
+
+        
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-50"></div>
+        <!--Empty space div ends here-->
+
+        <div class="button-holder-inside-modal-form d-f">
+             <a asp-action="Cancel" class="red-submit-button-inside-form t-d-n"
+               asp-route-returnUrl="@ViewData["returnUrl"]">Ləğv et</a>
+            <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,390 @@
+﻿@model Lombard.Domain.Entities.PledgeContract
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.16.8/dist/xlsx.full.min.js"
+    integrity="sha256-Ic7HP804IrYks4vUqX1trFF1Nr33RjONeJESZnYxsOY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.15.3/xlsx.full.min.js"></script>
+
+<form asp-action="Create" asp-route-CorporativeContractId="@ViewData["CorporativeContractId"]">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" name="pledgeCount" id="pledgeCount" value="" />
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold"
+            id="PageIndicator" data-page="Girov müqaviləsi yarat" data-indicator="Hal-hazırda yeni girov müqaviləsi yaradırsınız">
+                Girov müqaviləsi yarat
+            </p>
+        </div>
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="ContractNumber" class="f-s-14 f-w-500">Müqavilənin adı</label>
+                    <input asp-for="ContractNumber" type="text" id="ContractNumber" required value="@ViewData["ContractNumber"]" 
+                    oninvalid="this.setCustomValidity('Müqavilənin adını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Date" class="f-s-14 f-w-500">Bağlanma tarixi</label>
+                    <input asp-for="Date" type="date" id="Date" required 
+                    oninvalid="this.setCustomValidity('Bağlanma tarixini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+            </div>
+        </div>
+        <div class="form-part-inside-form-holder d-f">
+            <!-- Table holder starts here -->
+            <div class="main-table-holder-inside-page-cont d-f">
+                <div class="label-holder-inside-table-holder label-holder-with-add-svg d-f">
+                    <p class="f-s-24 f-w-bold">Girovlar</p>
+                    <a class="white-button d-f align-center f-center f-dir-col f-w-bold g-10 t-d-n file-input-inside-svg-holder">
+                        <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="68" height="68" rx="34" fill="#E3EBFF" />
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M34 23C27.925 23 23 27.925 23 34C23 40.075 27.925 45 34 45C40.075 45 45 40.075 45 34C45 27.925 40.075 23 34 23ZM35 38C35 38.2652 34.8946 38.5196 34.7071 38.7071C34.5196 38.8946 34.2652 39 34 39C33.7348 39 33.4804 38.8946 33.2929 38.7071C33.1054 38.5196 33 38.2652 33 38V35H30C29.7348 35 29.4804 34.8946 29.2929 34.7071C29.1054 34.5196 29 34.2652 29 34C29 33.7348 29.1054 33.4804 29.2929 33.2929C29.4804 33.1054 29.7348 33 30 33H33V30C33 29.7348 33.1054 29.4804 33.2929 29.2929C33.4804 29.1054 33.7348 29 34 29C34.2652 29 34.5196 29.1054 34.7071 29.2929C34.8946 29.4804 35 29.7348 35 30V33H38C38.2652 33 38.5196 33.1054 38.7071 33.2929C38.8946 33.4804 39 33.7348 39 34C39 34.2652 38.8946 34.5196 38.7071 34.7071C38.5196 34.8946 38.2652 35 38 35H35V38Z" fill="#3B72FF" />
+                        </svg>
+                        Excel yüklə
+                        <input type="file" name="pledge_contract_excel" id="pledge_contract_excel" 
+                        />
+                    </a>
+                </div>
+
+                <!--Empty space div starts here-->
+                <div class="empty-space-div-30"></div>
+                <!--Empty space div ends here-->
+
+                <div class="table-inside-table-holder corporative-gold-table-inside-table-holder">
+                    <table>
+                        <thead class="table-row-inside-table">
+                            <tr>
+                                <th rowspan="3" class="background-gray-th-inside-table">№</th>
+                                <th rowspan="3" style="column-width: 700px;">Müştərinin adı</th>
+                                <th rowspan="3" style="column-width: 400px;">Kod</th>
+                                <th rowspan="3" style="column-width: 300px;">Paketin nömrəsi</th>
+                                <th colspan="14">Qızılın əyyarı</th>
+                                <th rowspan="3">Ümumi çəki</th>
+                                <th rowspan="3">Xalis çəki</th> 
+                                <th rowspan="3">Likvid dəyəri</th>
+                                <th rowspan="3">Bazar dəyəri</th>
+                                <th rowspan="3">Sil</th>
+                            </tr>
+                            <tr>
+                                <th colspan="2">375</th>
+                                <th colspan="2">500</th>
+                                <th colspan="2">583/585</th>
+                                <th colspan="2">750</th>
+                                <th colspan="2">875</th>
+                                <th colspan="2">916</th>
+                                <th colspan="2">999</th>
+                            </tr>
+                            <tr>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                                <th>Ümumi çəki</th>
+                                <th>Xalis çəki</th>
+                            </tr>
+                        </thead>
+                        <tbody class="Pledge-Contract-Table">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="elm-with-tooltip add-button-svg-holder" data-tooltip="Əlavə etmək üçün klikləyin">
+                    <a class="addButtonForPledgeContract" onclick="CalculateTotalSum()">
+                        <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="68" height="68" rx="34" fill="#E3EBFF"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M34 23C27.925 23 23 27.925 23 34C23 40.075 27.925 45 34 45C40.075 45 45 40.075 45 34C45 27.925 40.075 23 34 23ZM35 38C35 38.2652 34.8946 38.5196 34.7071 38.7071C34.5196 38.8946 34.2652 39 34 39C33.7348 39 33.4804 38.8946 33.2929 38.7071C33.1054 38.5196 33 38.2652 33 38V35H30C29.7348 35 29.4804 34.8946 29.2929 34.7071C29.1054 34.5196 29 34.2652 29 34C29 33.7348 29.1054 33.4804 29.2929 33.2929C29.4804 33.1054 29.7348 33 30 33H33V30C33 29.7348 33.1054 29.4804 33.2929 29.2929C33.4804 29.1054 33.7348 29 34 29C34.2652 29 34.5196 29.1054 34.7071 29.2929C34.8946 29.4804 35 29.7348 35 30V33H38C38.2652 33 38.5196 33.1054 38.7071 33.2929C38.8946 33.4804 39 33.7348 39 34C39 34.2652 38.8946 34.5196 38.7071 34.7071C38.5196 34.8946 38.2652 35 38 35H35V38Z" fill="#3B72FF"/>
+                        </svg>     
+                    </a>
+                </div>
+            </div>
+            <!-- Table holder ends here -->
+
+            <!--Empty space div starts here-->
+            <div class="empty-space-div-30"></div>
+            <!--Empty space div ends here-->
+            
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldWeight" class="f-s-14 f-w-500">Ümumi çəki</label>
+                    <input asp-for="TotalGoldWeight" type="text" id="TotalGoldWeight" required readonly>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldNetWeight" class="f-s-14 f-w-500">Xalis çəki</label>
+                    <input asp-for="TotalGoldNetWeight" type="text" id="TotalGoldNetWeight" required readonly>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldLikvidPrice" class="f-s-14 f-w-500">Məmulatın likvid qiyməti</label>
+                    <input asp-for="TotalGoldLikvidPrice" type="text" id="TotalGoldLikvidPrice" required readonly>
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TotalGoldMarketPrice" class="f-s-14 f-w-500">Məmulatın Bazar qiyməti</label>
+                    <input asp-for="TotalGoldMarketPrice" type="text" id="TotalGoldMarketPrice" required readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-holder-inside-modal-form d-f">
+        <a asp-action="Cancel" class="red-submit-button-inside-form t-d-n" asp-route-CorporativeContractId="@ViewData["CorporativeContractId"]" >Ləğv et</a>
+        <button type="submit" asp-route-CorporativeContractId="@ViewData["CorporativeContractId"]" class="green-submit-button-inside-form">Təsdiqlə</button>
+    </div>
+
+    <!--Empty space div starts here-->
+    <div class="empty-space-div-30"></div>
+    <!--Empty space div ends here-->
+</form>
+
+
+<!--Empty space div starts here-->
+<div class="empty-space-div-30"></div>
+<!--Empty space div ends here-->
+
+
+
+
+<script>
+
+    function CalculateWeightSum(weight_input){
+        console.clear();
+        var this_row = weight_input.closest(".table-row-inside-table");
+        var class_name = weight_input.className.split(" ");
+        class_name = class_name[0];
+
+        if(class_name == "total_weight_input"){
+            var sum_weight = this_row.querySelector(".total_weight");
+            var weight_inputs = this_row.querySelectorAll(".total_weight_input");
+        }
+        else if(class_name == "net_weight_input"){
+            var sum_weight = this_row.querySelector(".net_weight");
+            var weight_inputs = this_row.querySelectorAll(".net_weight_input");
+            var hallmark = weight_input.name.split("_");
+            hallmark = hallmark[1];
+
+            $.ajax({
+                url: '/PledgeContract/GetHallmarkDetails/?typeName='+hallmark,
+                type: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                    console.log(result);
+                    var likvidPriceOfOneGram = result.likvidPriceOfOneGram;
+                    var marketPriceOfOneGram = result.marketPriceOfOneGram;
+                    var likvid_price = parseInt(weight_input.value) * parseInt(likvidPriceOfOneGram);
+                    var store_price = parseInt(weight_input.value) * parseInt(marketPriceOfOneGram);
+
+                    CalculatingLikvid(likvid_price , weight_input , this_row);
+                    CalculatingStore(store_price , weight_input , this_row);
+                }
+            });
+        }
+        // Sum weight_values for total weight and net weight
+            var sum_weight_value = 0;
+
+            for(i=0;i<weight_inputs.length;i++){
+                var input_value = parseInt(weight_inputs[i].value);
+                if(input_value > 0){
+                    sum_weight_value += parseInt(weight_inputs[i].value);
+                }
+            }
+            sum_weight.value = parseInt(sum_weight_value);
+
+        CalculateTotalSum();
+    }
+    function CalculatingLikvid(likvid_price , weight_input , this_row){
+        var likvid_hidden_input = weight_input.parentElement.querySelector(".likvid_hidden_input");
+
+        likvid_hidden_input.value = parseInt(likvid_price);
+        var total_likvid = 0;
+
+        var likvid_hidden_inputs_array = this_row.querySelectorAll(".likvid_hidden_input");
+
+        for(i=0;i<likvid_hidden_inputs_array.length;i++){
+            if(likvid_hidden_inputs_array[i].value > 0){
+                total_likvid += parseInt(likvid_hidden_inputs_array[i].value);
+            }
+        }
+        var total_likvid_input = this_row.querySelector(".likvid_price");
+        total_likvid_input.value = parseInt(total_likvid);
+
+        CalculateTotalSum();
+    }
+    function CalculatingStore(store_price , weight_input , this_row){
+        var store_hidden_input = weight_input.parentElement.querySelector(".store_hidden_input");
+
+        store_hidden_input.value = parseInt(store_price);
+        var total_store = 0;
+
+        var store_hidden_inputs_array = this_row.querySelectorAll(".store_hidden_input");
+
+        for(i=0;i<store_hidden_inputs_array.length;i++){
+            if(store_hidden_inputs_array[i].value > 0){
+                total_store += parseInt(store_hidden_inputs_array[i].value);
+            }
+        }
+        var total_store_input = this_row.querySelector(".store_price");
+        total_store_input.value = parseInt(total_store);
+        CalculateTotalSum()
+    }
+    function CalculateTotalSum(){
+        var input_names = ["total_weight" , "net_weight" , "likvid_price" , "store_price"];
+
+        for(j=0;j<input_names.length;j++){
+
+            switch(input_names[j]){
+                case "total_weight":
+                    var total_sums = document.querySelectorAll(".total_weight");
+                    var sum_input = document.querySelector("#TotalGoldWeight");
+                    break;
+                case "net_weight":
+                    var total_sums = document.querySelectorAll(".net_weight");
+                    var sum_input = document.querySelector("#TotalGoldNetWeight");
+                    break;
+                case "likvid_price":
+                    var total_sums = document.querySelectorAll(".likvid_price");
+                    var sum_input = document.querySelector("#TotalGoldLikvidPrice");
+                    break;
+                case "store_price":
+                    var total_sums = document.querySelectorAll(".store_price");
+                    var sum_input = document.querySelector("#TotalGoldMarketPrice");
+                    break;
+            }
+            var sum = 0;
+
+            for(i=0;i<total_sums.length;i++){
+                if(total_sums[i].value){
+                    sum += parseInt(total_sums[i].value);
+                }
+            }
+            sum_input.value = parseInt(sum); 
+        }
+    }
+</script>
+
+
+@*<script>
+    function dropHandler(e) {
+        e.stopPropagation(); e.preventDefault();
+
+        var files = e.dataTransfer.files, f = files[0];
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var data = new Uint8Array(e.target.result);
+            var workbook = XLSX.read(data, { type: 'array' });
+
+            var first_sheet_name = workbook.SheetNames[0];
+            var worksheet = workbook.Sheets[first_sheet_name];
+            var json = XLSX.utils.sheet_to_json(worksheet);
+
+            function addPledgeContract(newCount){
+                $.ajax({
+                    url: '/PledgeContract/AddPledgeToPledgeContract/?hCnt='+newCount,
+                    success: function (partialView) {
+                        $('.Pledge-Contract-Table').append(partialView);
+                    }
+                });
+                $('#pledgeCount').val(newCount);
+                hCnt++;
+            }
+
+            for(j=0;j<json.length;j++){
+                var newCount = j;
+                addPledgeContract(newCount);
+                console.log(newCount)
+            }
+
+            console.log(hCnt + " : hCnt");
+
+            //for (i=0;i<json.length;i++) {
+            //    console.table({
+            //        OrdinalNo:   {value: json[i].OrdinalNo},
+            //        ClientFullName: {value: json[i].ClientFullName},
+            //        Code: {value: json[i].Code},
+            //        PackageNumber: {value: json[i].PackageNumber}
+            //    });
+            //}
+        };
+        reader.readAsArrayBuffer(f);
+    };
+
+    function dragOverHandler(e) {
+        e.preventDefault();
+    };
+
+    function nl2br(str, is_xhtml) {
+        var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+        return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+    }
+</script>*@
+
+<script>
+    var selectedFile;
+    document.getElementById("pledge_contract_excel").addEventListener("change", function(event) {
+        selectedFile = event.target.files[0];
+
+        if (selectedFile) {
+            var fileReader = new FileReader();
+            fileReader.onload = function(event) {
+                var data = event.target.result;
+                var workbook = XLSX.read(data, {
+                    type: "binary"
+                });
+                workbook.SheetNames.forEach(sheet => {
+                    let rowObject = XLSX.utils.sheet_to_row_object_array(
+                        workbook.Sheets[sheet]
+                    );
+                    let json = rowObject;
+
+                    function addPledgeContract(newCount){
+                        $.ajax({
+                            url: '/PledgeContract/AddPledgeToPledgeContract/?hCnt='+newCount,
+                            success: function (partialView) {
+                                $('.Pledge-Contract-Table').append(partialView);
+                            }
+                        });
+                        $('#pledgeCount').val(newCount);
+                        hCnt++;
+                    }
+
+                    for(j=0;j<json.length;j++){
+                        var newCount = j;
+                        addPledgeContract(newCount);
+                    }
+
+                    console.log(hCnt + " : hCnt");
+
+                    setTimeout(function(){
+                        for (i=0;i<json.length;i++) {
+                            console.table({
+                                OrdinalNo:   {value: json[i].OrdinalNo},
+                                ClientFullName: {value: json[i].ClientFullName},
+                                Code: {value: json[i].Code},
+                                PackageNumber: {value: json[i].PackageNumber}
+                            });
+                        
+                            var ClientFullName = document.getElementsByClassName('client_full_name_input_' + i);
+                            var contract_number = document.getElementsByClassName('contract_number_input_' + i);
+                            var package_number = document.getElementsByClassName('package_number_input_' + i);
+                            ClientFullName[0].value = json[i].ClientFullName;
+                            contract_number[0].value = json[i].Code;
+                            package_number[0].value = json[i].PackageNumber;
+                        }
+                    }, 1000);
+                });
+            };
+            fileReader.readAsBinaryString(selectedFile);
+        }
+    });
+</script>

@@ -1,0 +1,53 @@
+﻿@model Lombard.Domain.Entities.Hallmark
+
+@{
+    ViewData["Title"] = "EditHallmark";
+}
+
+<form asp-action="EditHallmark">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="RecordStatus" />
+    <input type="hidden" asp-for="CreateAt" />
+    <input type="hidden" asp-for="UserId" />
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold"
+            id="PageIndicator" data-page="Əyyarı düzənlə" data-indicator="Hal-hazırda əyyarı düzənləyirsiniz">
+                Əyyarı düzənlə
+            </p>
+        </div>
+        <div class="form-part-inside-form-holder d-f">
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="TypeName" class="f-s-14 f-w-500">Əyyar</label>
+                    <input asp-for="TypeName" type="text" id="TypeName" required 
+                    oninvalid="this.setCustomValidity('Əyyarı yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="LikvidPriceOfOneGram" class="f-s-14 f-w-500">1 qramın likvid qiyməti</label>
+                    <input asp-for="LikvidPriceOfOneGram" type="text" id="LikvidPriceOfOneGram" required 
+                    oninvalid="this.setCustomValidity('1 qramın likvid qiymətini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MarketPriceOfOneGram" class="f-s-14 f-w-500">1 qramın bazar dəyəri</label>
+                    <input asp-for="MarketPriceOfOneGram" type="text" id="MarketPriceOfOneGram" required 
+                    oninvalid="this.setCustomValidity('1 qramın bazar dəyərini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+            </div>
+        </div>
+
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-30"></div>
+        <!--Empty space div ends here-->
+
+        <div class="button-holder-inside-modal-form d-f">
+            <a asp-action="Index" class="red-submit-button-inside-form t-d-n">Ləğv et</a>
+            <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+        </div>
+    </div>
+</form>

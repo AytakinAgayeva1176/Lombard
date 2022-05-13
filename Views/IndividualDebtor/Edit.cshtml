@@ -1,0 +1,181 @@
+﻿@model Lombard.Domain.Entities.IndividualDebtor
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<form asp-action="Edit">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="RecordStatus" />
+    <input type="hidden" asp-for="CreateAt" />
+    <input type="hidden" asp-for="UserId" />
+
+
+    <div class="main-form-holder-inside-page-cont d-f">
+        <div class="label-holder-inside-form-holder d-f">
+            <p class="f-s-24 f-w-bold" 
+            id="PageIndicator" data-page="Fiziki borcalan" data-indicator="Fiziki borcalanın detallarını düzənləyirsiniz">
+                Fiziki borcalanı düzənlə
+            </p>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="label-row-inside-form-part d-f">
+                <p class="f-s-18 f-w-bold">Şəxsi məlumatlar</p>
+            </div>
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Name" class="f-s-14 f-w-500">Adı</label>
+                    <input asp-for="Name" type="text" id="Name" required 
+                    oninvalid="this.setCustomValidity('Borcalanın adını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Surname" class="f-s-14 f-w-500">Soyadı</label>
+                    <input asp-for="Surname" type="text" id="Surname" required 
+                    oninvalid="this.setCustomValidity('Borcalanın soyadını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Patronymic" class="f-s-14 f-w-500">Atasının adı</label>
+                    <input asp-for="Patronymic" type="text" id="Patronymic" required 
+                    oninvalid="this.setCustomValidity('Borcalanın atasının adını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="BirthDate" class="f-s-14 f-w-500">Doğum tarixi</label>
+                    <input asp-for="BirthDate" type="date" id="BirthDate" required 
+                    oninvalid="this.setCustomValidity('Borcalanın doğum tarixini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="BirthPlace" class="f-s-14 f-w-500">Doğulduğu yer</label>
+                    <input asp-for="BirthPlace" type="text" id="BirthPlace" required 
+                    oninvalid="this.setCustomValidity('Borcalanın doğulduğu yeri yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="CurrentLivingAddress" class="f-s-14 f-w-500">Fatiki yaşayış ünvanı</label>
+                    <input asp-for="CurrentLivingAddress" type="text" id="CurrentLivingAddress" required 
+                    oninvalid="this.setCustomValidity('Borcalanın vətəndaşlığını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="RegisteredAddress" class="f-s-14 f-w-500">Qeydiyyat ünvanı</label>
+                    <input asp-for="RegisteredAddress" type="text" id="RegisteredAddress" required 
+                    oninvalid="this.setCustomValidity('Borcalanın qeydiyyat ünvanını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Email" class="f-s-14 f-w-500">Email</label>
+                    <input asp-for="Email" type="text" id="Email" 
+                    oninvalid="this.setCustomValidity('Email ünvanını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Gender" class="f-s-14 f-w-500">Cinsi</label>
+                    <select asp-for="Gender" class="form-control" asp-items="(IEnumerable<SelectListItem>)@ViewData["GenderTypes"]"></select>
+                    @*<input asp-for="Gender" type="text" id="Gender" required 
+                    oninvalid="this.setCustomValidity('Borcalanın cinsini yazın')"
+                    oninput="this.setCustomValidity('')">*@
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MarialStatuses" class="f-s-14 f-w-500">Ailə vəziyyəti</label>
+                    <select asp-for="MarialStatuses" class="form-control"  asp-items="(IEnumerable<SelectListItem>)@ViewData["MarialStatuses"]"></select>
+                    @*<input asp-for="MarialStatuses" type="text" id="CurrentLivingAddress" required 
+                    oninvalid="this.setCustomValidity('Borcalanın ailə vəziyyətini yazın')"
+                    oninput="this.setCustomValidity('')">*@
+                </div>
+            </div>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="label-row-inside-form-part d-f">
+                <p class="f-s-18 f-w-bold">Şəxsiyyət vəsiqəsi məlumatları</p>
+            </div>
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="IDFincode" class="f-s-14 f-w-500">Şəxsiyyət vəsiqəsi FİN kodu</label>
+                    <input asp-for="IDFincode" type="text" id="IDFincode" required 
+                    oninvalid="this.setCustomValidity('Borcalanın şəxsiyyət vəsiqəsinin FİN kodunu yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="IDSerialNumber" class="f-s-14 f-w-500">Şəxsiyyət vəsiqəsi seriya nömrəsi</label>
+                    <input asp-for="IDSerialNumber" type="text" id="IDSerialNumber" required 
+                    oninvalid="this.setCustomValidity('Borcalanın şəxsiyyət vəsiqəsinin seriya nömrəsini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="IDOrganizationName" class="f-s-14 f-w-500">Vəsiqəni verən orqan</label>
+                    <input asp-for="IDOrganizationName" type="text" id="IDOrganizationName" required 
+                    oninvalid="this.setCustomValidity('Vəsiqəni verən orqanın adını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="IDGiveDate" class="f-s-14 f-w-500">Vəsiqənin verilmə tarixi </label>
+                    <input asp-for="IDGiveDate" type="date" id="IDGiveDate" required 
+                    oninvalid="this.setCustomValidity('Vəsiqənin verilmə tarixini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="IDExpireDate" class="f-s-14 f-w-500">Vəsiqənin etbarlılıq müddəti</label>
+                    <input asp-for="IDExpireDate" type="date" id="IDExpireDate" required 
+                    oninvalid="this.setCustomValidity('Vəsiqənin etbarlılıq müddətini yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Citizenship" class="f-s-14 f-w-500">Vətəndaşlıq</label>
+                    <input asp-for="Citizenship" type="text" id="Citizenship" required 
+                    oninvalid="this.setCustomValidity('Borcalanın vətəndaşlığını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-part-inside-form-holder d-f">
+            <div class="label-row-inside-form-part d-f">
+                <p class="f-s-18 f-w-bold">Əlaqə məlumatları</p>
+            </div>
+            <div class="input-row-inside-form-part d-g">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="MobileNumber" class="f-s-14 f-w-500">Mobil telefonu</label>
+                    <input asp-for="MobileNumber" type="tel" id="MobileNumber" class="custom_phone_number" required minlength="9" maxlength="14" 
+                    oninvalid="this.setCustomValidity('Borcalanın mobil telefonunu yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Phone" class="f-s-14 f-w-500">Ev telefonu</label>
+                    <input asp-for="Phone" type="tel" id="Phone" required 
+                    oninvalid="this.setCustomValidity('Borcalanın ev telefonunu yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="PhoneAdditional" class="f-s-14 f-w-500">Əlavə telefon</label>
+                    <input asp-for="PhoneAdditional" type="tel" id="PhoneAdditional">
+                </div>
+            </div>
+        </div>
+        
+        <!--Empty space div starts here-->
+        <div class="empty-space-div-50"></div>
+        <!--Empty space div ends here-->
+
+        <div class="button-holder-inside-modal-form d-f">
+             <a asp-action="Cancel" class="red-submit-button-inside-form t-d-n" asp-route-returnUrl="@ViewData["returnUrl"]">Ləğv et</a>
+            <button type="submit" asp-route-returnUrl="@ViewData["returnUrl"]" class="green-submit-button-inside-form">Təsdiqlə</button>
+        </div>
+    </div>
+</form>
+
+<!--Empty space div starts here-->
+<div class="empty-space-div-50"></div>
+<!--Empty space div ends here-->
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

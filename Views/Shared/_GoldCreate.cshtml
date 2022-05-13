@@ -1,0 +1,23 @@
+﻿@model Lombard.Domain.Entities.GoldType
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateGoldType">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-holder-inside-modal d-f">
+                <div class="input-holder-with-label d-f">
+                    <label asp-for="Name" class="f-s-14 f-w-500">Qızılın adı</label>
+                    <input asp-for="Name" type="text" id="Name" required
+                    oninvalid="this.setCustomValidity('Qızılın adını yazın')"
+                    oninput="this.setCustomValidity('')">
+                </div>
+                <div class="button-holder-inside-modal-form d-f">
+                    <button type="button" class="red-submit-button-inside-form" onclick="ToggleModal(this)" data-modal="modal-for-gold">Ləğv et</button>
+                    <button type="submit" class="green-submit-button-inside-form">Təsdiqlə</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
